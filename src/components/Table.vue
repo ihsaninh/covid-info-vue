@@ -4,7 +4,10 @@
       <b-card>
         <div>
           <h6 class="mb-3">Data Kasus Coronavirus di Indonesia Berdasarkan Provinsi</h6>
-          <b-table :items="itemsId" :fields="fieldsId" bordered sticky-header="700px"></b-table>
+          <b-table :items="itemsId" :busy="isLoading" :fields="fieldsId" bordered sticky-header="700px"></b-table>
+          <div class="text-center text-danger my-2" v-if="isLoading">
+            <b-spinner label="Loading..." class="align-middle" variant="dark"></b-spinner>
+          </div>
         </div>
       </b-card>
     </b-card-group>
@@ -13,6 +16,9 @@
         <div>
           <h6 class="mb-3">Kasus Coronavirus Global (Data by JHU)</h6>
           <b-table :items="itemsGlobal" :fields="fieldsGlobal" bordered sticky-header="700px"></b-table>
+          <div class="text-center text-danger my-2" v-if="isLoading">
+            <b-spinner label="Loading..." class="align-middle" variant="dark"></b-spinner>
+          </div>
         </div>
       </b-card>
     </b-card-group>
@@ -31,7 +37,8 @@ export default {
       fieldsId,
       itemsId: [],
       itemsGlobal: [],
-      fieldsGlobal
+      fieldsGlobal,
+      isLoading: false,
    }
   },
   mounted () {
@@ -41,10 +48,12 @@ export default {
   methods: {
     async getDetailDataId() {
       try {
+        this.isLoading = true;
         const response = await axios.get('https://api.kawalcorona.com/indonesia/provinsi/');
         response.data.forEach(el => {
           this.itemsId.push(el.attributes); 
         });
+        this.isLoading = false;
       } catch (error) {
         // 
       }

@@ -8,7 +8,8 @@
     </b-row>
     <div class="mt-5">
       <b-card-group deck>
-        <b-card bg-variant="kuning">
+
+        <b-card bg-variant="kuning" v-if="!isLoading">
           <b-card-text class="card-text-header">Positif COVID-19</b-card-text>
           <b-row>
             <b-col col lg="8">
@@ -22,7 +23,17 @@
           </b-row>
         </b-card>
 
-        <b-card bg-variant="hijau" class="success">
+        <b-card bg-variant="kuning" v-else>
+          <content-loader :speed="10" :height="30" :animate="true" class="mb-3" primaryColor="rgba(255,255,255,0.5)"></content-loader>
+          <b-row>
+            <b-col col>
+              <content-loader :speed="10" :height="30" :animate="true" primaryColor="rgba(255,255,255,0.5)" class="mb-2"></content-loader>
+              <content-loader :speed="10" :height="30" :animate="true" primaryColor="rgba(255,255,255,0.5)"></content-loader>
+            </b-col>
+          </b-row>
+        </b-card>
+
+        <b-card bg-variant="hijau" class="success" v-if="!isLoading">
           <b-card-text class="card-text-header">Sembuh</b-card-text>
           <b-row>
             <b-col col lg="8">
@@ -36,7 +47,17 @@
           </b-row>
         </b-card>
 
-        <b-card bg-variant="oren">
+        <b-card bg-variant="hijau" v-else>
+          <content-loader :speed="10" :height="30" :animate="true" class="mb-3" primaryColor="rgba(255,255,255,0.5)"></content-loader>
+          <b-row>
+            <b-col col>
+              <content-loader :speed="10" :height="30" :animate="true" primaryColor="rgba(255,255,255,0.5)" class="mb-2"></content-loader>
+              <content-loader :speed="10" :height="30" :animate="true" primaryColor="rgba(255,255,255,0.5)"></content-loader>
+            </b-col>
+          </b-row>
+        </b-card>
+
+        <b-card bg-variant="oren" v-if="!isLoading">
           <b-card-text class="card-text-header">Meninggal</b-card-text>
           <b-row>
             <b-col col lg="8">
@@ -49,6 +70,17 @@
             </b-col>
           </b-row>
         </b-card>
+
+        <b-card bg-variant="oren" v-else>
+          <content-loader :speed="10" :height="30" :animate="true" class="mb-3" primaryColor="rgba(255,255,255,0.5)"></content-loader>
+          <b-row>
+            <b-col col>
+              <content-loader :speed="10" :height="30" :animate="true" primaryColor="rgba(255,255,255,0.5)" class="mb-2"></content-loader>
+              <content-loader :speed="10" :height="30" :animate="true" primaryColor="rgba(255,255,255,0.5)"></content-loader>
+            </b-col>
+          </b-row>
+        </b-card>
+
       </b-card-group>
     </div>
   </b-container>
@@ -57,15 +89,20 @@
 <script>
 
 import axios from 'axios';
+import { ContentLoader } from 'vue-content-loader'
 
 import { thousandFormatter } from '../utils/helper'
 
 export default {
   name: 'Card',
+  components: {
+    ContentLoader
+  },
 
   data () {
     return {
       dataId: [],
+      isLoading: false,
       dataGlobal: {}
     }
   },
@@ -79,8 +116,10 @@ export default {
     thousandFormatter,
     async getIdCases() {
       try {
+        this.isLoading = true;
         const response = await axios.get('https://api.kawalcorona.com/indonesia/')
-        this.dataId = response.data;        
+        this.dataId = response.data;  
+        this.isLoading = false;      
       } catch (error) {
         // error
       }
