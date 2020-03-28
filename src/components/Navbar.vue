@@ -11,7 +11,7 @@
         <b-navbar-nav class="ml-auto">
 
           <b-navbar-nav>
-            <b-nav-item class="mr-5" href="#">Dahboard</b-nav-item>
+            <b-nav-item class="mr-5" href="#" active>Home</b-nav-item>
             <b-nav-item class="mr-3" href="#">About Data</b-nav-item>
           </b-navbar-nav>
 
@@ -37,5 +37,8 @@ export default {
   }
   .navbar-brand {
     font-weight: 500 !important;
+  }
+  .navbar {
+    height: 70px;
   }
 </style>

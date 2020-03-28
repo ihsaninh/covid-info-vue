@@ -1,4 +1,4 @@
-export const fields = [
+export const fieldsId = [
   {
     key: 'FID',
     label: 'Prov ID',
@@ -24,6 +24,34 @@ export const fields = [
     label: 'Meninggal',
     sortable: true
   }
+]
+
+export const fieldsGlobal = [
+  {
+    key: 'OBJECTID',
+    label: 'ID Negara',
+    sortable: true
+  },
+  {
+    key: 'Country_Region',
+    label: 'Nama Negara',
+    sortable: true
+  },
+  {
+    key: 'Confirmed',
+    label: 'Positif',
+    sortable: true
+  },
+  {
+    key: 'Recovered',
+    label: 'Sembuh',
+    sortable: true
+  },
+  {
+    key: 'Deaths',
+    label: 'Meninggal',
+    sortable: true
+  },
 ]
 
 export const thousandFormatter = (num) => {
