@@ -3,6 +3,7 @@
     <Navbar />
     <Card />
     <Table />
+    <Footer />
   </div>
 </template>
 
@@ -10,13 +11,15 @@
 import Navbar from './components/Navbar';
 import Card from './components/Card';
 import Table from './components/Table';
+import Footer from './components/Footer';
 
 export default {
   name: 'App',
   components: {
     Navbar,
     Card,
-    Table
+    Table,
+    Footer
   },
 }
 </script>

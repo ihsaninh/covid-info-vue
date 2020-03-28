@@ -1,7 +1,7 @@
 <template>
   <div class="container mt-5">
     <b-card-group deck>
-      <b-card bg-variant="kuning">
+      <b-card>
         <div>
           <h6 class="mb-3">Data Kasus Coronavirus di Indonesia Berdasarkan Provinsi</h6>
           <b-table :items="itemsId" :fields="fieldsId" bordered sticky-header="700px"></b-table>
@@ -9,7 +9,7 @@
       </b-card>
     </b-card-group>
     <b-card-group deck class="mt-5">
-      <b-card bg-variant="kuning">
+      <b-card>
         <div>
           <h6 class="mb-3">Kasus Coronavirus Global (Data by JHU)</h6>
           <b-table :items="itemsGlobal" :fields="fieldsGlobal" bordered sticky-header="700px"></b-table>
@@ -26,17 +26,13 @@ import { fieldsId, fieldsGlobal } from '../utils/helper'
 
 export default {
   name: 'Table',
-  props: {
-
-  },
-
   data() {
-      return {
-        fieldsId,
-        itemsId: [],
-        itemsGlobal: [],
-        fieldsGlobal
-    }
+    return {
+      fieldsId,
+      itemsId: [],
+      itemsGlobal: [],
+      fieldsGlobal
+   }
   },
   mounted () {
     this.getDetailDataId();
@@ -75,5 +71,9 @@ th {
 }
 td {
   font-size: 15px;
+}
+.card {
+   box-shadow: 0 0 4px 0 rgba(0,0,0,.05), 0 4px 24px 0 rgba(0,0,0,.1);
+   border: none;
 }
 </style>
