@@ -15,7 +15,7 @@
       <b-card>
         <div>
           <h6 class="mb-3">Kasus Coronavirus Global (Data by JHU)</h6>
-          <b-table :items="itemsGlobal" :fields="fieldsGlobal" bordered sticky-header="700px"></b-table>
+          <b-table :items="itemsGlobal" :busy="isLoading" :fields="fieldsGlobal" bordered sticky-header="700px"></b-table>
           <div class="text-center text-danger my-2" v-if="isLoading">
             <b-spinner label="Loading..." class="align-middle" variant="dark"></b-spinner>
           </div>
