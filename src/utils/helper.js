@@ -1,7 +1,7 @@
 export const fieldsId = [
   {
-    key: 'FID',
-    label: 'Prov ID',
+    key: 'index',
+    label: 'No.',
     sortable: true
   },
   {
@@ -28,8 +28,8 @@ export const fieldsId = [
 
 export const fieldsGlobal = [
   {
-    key: 'OBJECTID',
-    label: 'ID Negara',
+    key: 'index',
+    label: 'No.',
     sortable: true
   },
   {

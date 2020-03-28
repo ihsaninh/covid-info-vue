@@ -2,8 +2,8 @@
   <b-container class="text-center martop">
     <b-row class="justify-content-md-center">
       <b-col col lg="12">
-        <h1 class="mt-3">COVID 19 INFO</h1>
-          <h5 class="mt-4">Info Covid 19 di Global dan Indonesia</h5>
+        <h1 class="mt-3">COVID-19 INFO</h1>
+          <h5 class="mt-4">Informasi Covid-19 di Indonesia dan Global</h5>
       </b-col>
     </b-row>
     <div class="mt-5">

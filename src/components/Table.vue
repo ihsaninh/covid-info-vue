@@ -4,7 +4,20 @@
       <b-card>
         <div>
           <h6 class="mb-3">Data Kasus Coronavirus di Indonesia Berdasarkan Provinsi</h6>
-          <b-table :items="itemsId" :busy="isLoading" :fields="fieldsId" bordered sticky-header="700px"></b-table>
+          <b-table :items="itemsId" :busy="isLoading" :fields="fieldsId" bordered sticky-header="700px">
+            <template v-slot:cell(index)="data">
+              {{ data.index + 1 }}
+            </template>
+            <template v-slot:cell(Kasus_Posi)="data">
+              {{ thousandFormatter(data.item.Kasus_Posi) }}
+            </template>
+            <template v-slot:cell(Kasus_Semb)="data">
+              {{ thousandFormatter(data.item.Kasus_Semb) }}
+            </template>
+            <template v-slot:cell(Kasus_Meni)="data">
+              {{ thousandFormatter(data.item.Kasus_Meni) }}
+            </template>
+          </b-table>
           <div class="text-center text-danger my-2" v-if="isLoading">
             <b-spinner label="Loading..." class="align-middle" variant="dark"></b-spinner>
           </div>
@@ -15,7 +28,20 @@
       <b-card>
         <div>
           <h6 class="mb-3">Kasus Coronavirus Global (Data by JHU)</h6>
-          <b-table :items="itemsGlobal" :busy="isLoading" :fields="fieldsGlobal" bordered sticky-header="700px"></b-table>
+          <b-table :items="itemsGlobal" :busy="isLoading" :fields="fieldsGlobal" bordered sticky-header="700px">
+            <template v-slot:cell(index)="data">
+              {{ data.index + 1 }}
+            </template>
+            <template v-slot:cell(Confirmed)="data">
+              {{ thousandFormatter(data.item.Confirmed) }}
+            </template>
+            <template v-slot:cell(Recovered)="data">
+              {{ thousandFormatter(data.item.Recovered) }}
+            </template>
+            <template v-slot:cell(Deaths)="data">
+              {{ thousandFormatter(data.item.Deaths) }}
+            </template>
+          </b-table>
           <div class="text-center text-danger my-2" v-if="isLoading">
             <b-spinner label="Loading..." class="align-middle" variant="dark"></b-spinner>
           </div>
@@ -28,7 +54,7 @@
 <script>
 import axios from 'axios';
 
-import { fieldsId, fieldsGlobal } from '../utils/helper'
+import { fieldsId, fieldsGlobal, thousandFormatter } from '../utils/helper'
 
 export default {
   name: 'Table',
@@ -46,6 +72,7 @@ export default {
     this.getDetailGlobal();
   },
   methods: {
+    thousandFormatter,
     async getDetailDataId() {
       try {
         this.isLoading = true;

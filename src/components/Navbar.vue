@@ -38,7 +38,7 @@ export default {
   }
   .navbar-brand {
     font-weight: 500 !important;
-    font-size: 28px
+    font-size: 25px
   }
   .navbar {
     height: 70px;
