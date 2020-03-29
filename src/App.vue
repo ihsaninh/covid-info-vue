@@ -1,29 +1,18 @@
 <template>
   <div id="app">
     <Navbar />
-    <Card />
-    <Table />
-    <News />
-    <Footer />
+    <router-view />
   </div>
 </template>
 
 <script>
-import Navbar from './components/Navbar';
-import Card from './components/Card';
-import Table from './components/Table';
-import News from './components/News';
-import Footer from './components/Footer';
+import Navbar from '../src/components/Navbar'
 
 export default {
   name: 'App',
   components: {
     Navbar,
-    Card,
-    Table,
-    News,
-    Footer
-  },
+  }
 }
 </script>
 <style>

@@ -11,9 +11,9 @@
         <b-navbar-nav class="ml-auto">
 
           <b-navbar-nav>
-            <b-nav-item class="mr-4" href="#" active>Beranda</b-nav-item>
-            <b-nav-item class="mr-4" href="#">Berita</b-nav-item>
-            <b-nav-item class="mr-1" href="#">Tentang</b-nav-item>
+            <b-nav-item class="mr-4" to="/">Beranda</b-nav-item>
+            <b-nav-item class="mr-4" to="/news">Berita</b-nav-item>
+            <b-nav-item class="mr-1" to="/about">Tentang</b-nav-item>
           </b-navbar-nav>
 
         </b-navbar-nav>
