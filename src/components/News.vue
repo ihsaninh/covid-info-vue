@@ -5,9 +5,9 @@
         <h3>Berita Terkini</h3>
         <b-row class="mt-5" v-for="news in allNews" v-bind:key="news">
           <b-col col md="8" xs="12">
-            <h5 class="title"><a href="#">{{ removeSource(news.title)[0] }}</a></h5>
+            <h5 class="title"><a :href='news.url' target="_blank">{{ news.title }}</a></h5>
             <h6 class="mt-3 timestamp">{{ formatDate(news.publishedAt) }}</h6>
-            <p class="mt-4 description" v-if="news.source.name !== 'Youtube.com'">{{ `${removeSource(news.title)[1]} - ${news.description}`}}</p>
+            <p class="mt-4 description" v-if="news.source.name !== 'Youtube.com'">{{ `${news.source.name} - ${limitCharacter(news.content, 160)}`}}</p>
             <a :href="news.url" v-else class="btn btn-custom link-ku" target="_blank">Lihat di Youtube</a>
           </b-col>
           <b-col col md="4" xs="12">
@@ -22,7 +22,7 @@
 <script>
 import axios from 'axios';
 
-import { removeSource, formatDate } from '../utils/helper'
+import { limitCharacter, formatDate, slug } from '../utils/helper'
 
 export default {
   name: 'News',
@@ -35,11 +35,12 @@ export default {
     this.getNews();
   },
   methods: {
-    removeSource,
+    limitCharacter,
     formatDate,
+    slug,
     async getNews () {
       try {
-        const response = await axios.get('https://newsapi.org/v2/top-headlines?country=id&apiKey=6566df4437f94a3bb6e92809f06f46e8&category=health&pageSize=5&page=1');
+        const response = await axios.get('https://newsapi.org/v2/everything?q=corona+covid&apiKey=6566df4437f94a3bb6e92809f06f46e8&language=id&sortBy=publishedAt&pageSize=5');
         this.allNews = response.data.articles;
         console.log(this.allNews);
       } catch (error) {

@@ -7,8 +7,8 @@ export const thousandFormatter = (num) => {
 };
 
 export const removeSource = (str) => {
-  const strBaru = str.split(" - ");
-  return strBaru;
+  const strBaru = str.split(".");
+  return strBaru[0];
 }
 
 export const formatDate = timestamp => {
@@ -54,4 +54,15 @@ export const formatDate = timestamp => {
   }
 
   return `${dayName[day]}, ${getDate} ${monthName[month]} ${getYears} ${getHours}:${getMinutes}`;
+
+};
+
+export const limitCharacter = (str, limit) => {
+  return (
+    str.length >= limit ? `${str.substr(0, limit)}...` : str
+  );
+};
+
+export const slug = (str) => {
+  return str.replace(/ /g, "-")
 };
