@@ -91,7 +91,6 @@ export default {
         response.data.forEach(el => {
           this.itemsGlobal.push(el.attributes); 
         });
-        console.log(this.itemsGlobal);
       } catch (error) {
         // 
       }

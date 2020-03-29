@@ -138,8 +138,8 @@ export default {
 
 <style scoped>
  h1 {
-   font-weight: 300 !important;
-   font-size: 40px;
+   font-weight: 500 !important;
+   font-size: 34px;
  }
  h5 {
    font-weight: 400 !important;
