@@ -42,7 +42,6 @@ export default {
       try {
         const response = await axios.get('https://newsapi.org/v2/everything?q=corona+covid&apiKey=6566df4437f94a3bb6e92809f06f46e8&language=id&sortBy=publishedAt&pageSize=5');
         this.allNews = response.data.articles;
-        console.log(this.allNews);
       } catch (error) {
         // error
       }
