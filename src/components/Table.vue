@@ -101,13 +101,6 @@ export default {
 </script>
 
 <style scoped>
-th {
-  font-weight: 500;
-  font-size: 15px;
-}
-td {
-  font-size: 15px;
-}
 .card {
    box-shadow: 0 0 4px 0 rgba(0,0,0,.05), 0 4px 24px 0 rgba(0,0,0,.1);
    border: none;

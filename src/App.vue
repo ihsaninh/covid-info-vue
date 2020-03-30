@@ -12,7 +12,8 @@
 
             <b-navbar-nav>
               <b-nav-item class="mr-4" to="/" exact>Beranda</b-nav-item>
-              <b-nav-item class="mr-1" to="/about">Tentang</b-nav-item>
+              <b-nav-item class="mr-4" to="/news" exact>Berita</b-nav-item>
+              <b-nav-item class="mr-1" to="/about" disabled>Tentang</b-nav-item>
             </b-navbar-nav>
 
           </b-navbar-nav>
@@ -33,9 +34,20 @@ export default {
 #app {
   font-family: 'IBM Plex Sans';
 }
+th {
+  font-weight: 500;
+  font-size: 15px;
+}
+td {
+  font-size: 14px !important;
+}
+body {
+  background-color: #f7fafc !important;
+}
 .navbar-white {
   background-color: rgba(255, 255, 255, 0.85) !important;
-  box-shadow: 0 .125rem .25rem rgba(0,0,0,.075) !important;
+  box-shadow:0 0 32px -4px rgba(0,0,0,.15);
+  border-bottom: 1px solid #eaedf1;
   backdrop-filter: saturate(180%) blur(20px);
   }
 .navbar-brand {

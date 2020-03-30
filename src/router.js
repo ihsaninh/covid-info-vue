@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 
@@ -32,10 +33,13 @@ export const router  = new VueRouter({
         title: 'About Covid-19'
       } 
     },
-  ]
+  ],
+  scrollBehavior (to, from, savedPosition) {
+    return { x: 0, y: 0 }
+  }
 })
 
-// eslint-disable-next-line no-unused-vars
+
 router.afterEach((to, from) => {
   Vue.nextTick(() => {
       document.title = to.meta.title;

@@ -14,6 +14,9 @@
             <b-img rounded :src="news.urlToImage" fluid alt="Responsive image"></b-img>
           </b-col>
         </b-row>
+        <b-row class="justify-content-center mt-4">
+          <router-link to="/news" class="btn btn-outline-success">Lihat Selengkapnya</router-link>
+        </b-row>
       </b-card>
     </b-card-group>
   </b-container> 
@@ -46,7 +49,7 @@ export default {
         // error
       }
     }
-  }
+  },
 }
 </script>
 
@@ -86,5 +89,16 @@ export default {
 }
 .btn-custom:hover {
   color: #eee;
+}
+.btn-outline-success {
+  font-weight: 400;
+  border-width: 2px;
+}
+.btn {
+  border-radius: .5rem
+}
+.btn-outline-success:hover {
+  background-color: #c6f6d5;
+  color: #28a745;
 }
 </style>
