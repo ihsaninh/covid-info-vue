@@ -6,7 +6,7 @@
         <b-card v-for="news in allNews" v-bind:key="news.id">
           <b-row class="mt-2">
             <b-col col md="8" xs="12">
-              <h5 class="title"><a href='#' target="_blank">{{ news.title }}</a></h5>
+              <h5 class="title"><a :href='news.url' target="_blank">{{ news.title }}</a></h5>
               <h6 class="mt-3 timestamp">{{ formatDate(news.publishedAt) }}</h6>
               <p class="mt-4 description">{{ `${news.source.name} - ${limitCharacter(news.content, 200)}`}}</p>
             </b-col>
