@@ -4,13 +4,13 @@
       <b-card>
         <h3 class="news-title">Berita Terkini</h3>
         <b-row class="mt-5" v-for="news in allNews" v-bind:key="news.id">
-          <b-col col md="8" xs="12">
+          <b-col sm="8">
             <h5 class="title"><a :href='news.url' target="_blank">{{ news.title }}</a></h5>
             <h6 class="mt-3 timestamp">{{ formatDate(news.publishedAt) }}</h6>
             <p class="mt-4 description" v-if="news.source.name !== 'Youtube.com'">{{ `${news.source.name} - ${limitCharacter(news.content, 180)}`}}</p>
             <a :href="news.url" v-else class="btn btn-custom link-ku" target="_blank">Lihat di Youtube</a>
           </b-col>
-          <b-col col md="4" xs="12">
+          <b-col sm="4" class="d-none d-sm-block">
             <b-img rounded :src="news.urlToImage" fluid alt="Responsive image"></b-img>
           </b-col>
         </b-row>
@@ -100,5 +100,26 @@ export default {
 .btn-outline-success:hover {
   background-color: #c6f6d5;
   color: #28a745;
+}
+@media only screen and (max-width: 768px) {
+  .card {
+    padding: 5px;
+  }
+  .news-title {
+    font-size: 22px;
+  }
+  .title {
+    line-height: 32px;
+    font-size: 18px;
+  }
+  .timestamp {
+    font-size: 14px;
+  }
+  .description {
+    font-size: 14px;
+  }
+  .btn-outline-success {
+    font-size: 14px;
+  }
 }
 </style>

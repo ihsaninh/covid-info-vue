@@ -3,7 +3,7 @@
     <b-card-group deck>
       <b-card>
         <div>
-          <h6 class="mb-3">Data Kasus Coronavirus di Indonesia Berdasarkan Provinsi</h6>
+          <h6 class="mb-3 info-title">Data Kasus Coronavirus di Indonesia Berdasarkan Provinsi</h6>
           <b-table :items="itemsId" :busy="isLoading" :fields="fieldsId" bordered sticky-header="700px">
             <template v-slot:cell(index)="data">
               {{ data.index + 1 }}
@@ -27,7 +27,7 @@
     <b-card-group deck class="mt-5">
       <b-card>
         <div>
-          <h6 class="mb-3">Kasus Coronavirus Global (Data by JHU)</h6>
+          <h6 class="mb-3 info-title">Kasus Coronavirus Global (Data by JHU)</h6>
           <b-table :items="itemsGlobal" :busy="isLoading" :fields="fieldsGlobal" bordered sticky-header="700px">
             <template v-slot:cell(index)="data">
               {{ data.index + 1 }}
@@ -104,5 +104,8 @@ export default {
 .card {
    box-shadow: 0 0 4px 0 rgba(0,0,0,.05), 0 4px 24px 0 rgba(0,0,0,.1);
    border: none;
+}
+.info-title {
+  line-height: 25px;
 }
 </style>

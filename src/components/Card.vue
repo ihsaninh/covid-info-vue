@@ -24,11 +24,11 @@
         </b-card>
 
         <b-card bg-variant="kuning" v-else>
-          <content-loader :speed="10" :height="30" :animate="true" class="mb-3" primaryColor="rgba(255,255,255,0.5)"></content-loader>
+          <content-loader :speed="2" :height="30" :animate="true" class="mb-3" primaryColor="rgba(255,255,255,0.5)"></content-loader>
           <b-row>
             <b-col col>
-              <content-loader :speed="10" :height="30" :animate="true" primaryColor="rgba(255,255,255,0.5)" class="mb-2"></content-loader>
-              <content-loader :speed="10" :height="30" :animate="true" primaryColor="rgba(255,255,255,0.5)"></content-loader>
+              <content-loader :speed="2" :height="30" :animate="true" primaryColor="rgba(255,255,255,0.5)" class="mb-2"></content-loader>
+              <content-loader :speed="2" :height="30" :animate="true" primaryColor="rgba(255,255,255,0.5)"></content-loader>
             </b-col>
           </b-row>
         </b-card>
@@ -171,4 +171,15 @@ export default {
  .martop {
    margin-top: 100px
  }
+ @media only screen and (max-width: 768px) {
+   h1 {
+    font-size: 28px;
+  }
+  h5 {
+    font-size: 14px;
+  }
+  .card-text {
+    font-size: 15px;
+  }
+}
 </style>

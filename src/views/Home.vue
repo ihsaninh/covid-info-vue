@@ -11,7 +11,6 @@
 import Card from '../components/Card';
 import Table from '../components/Table';
 import News from '../components/News';
-import Footer from '../components/Footer';
 
 export default {
   name: 'Home',
@@ -19,7 +18,6 @@ export default {
     Card,
     Table,
     News,
-    Footer
   },
 }
 </script>

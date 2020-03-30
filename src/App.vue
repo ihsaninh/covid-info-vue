@@ -21,6 +21,9 @@
       </b-container>
     </b-navbar>
   <router-view />
+  <footer class="mt-5 border-top">
+    <h6 class="text-center">Copyright 2020 | Ihsan Nurul Habib</h6>
+  </footer> 
   </div>
 </template>
 
@@ -53,8 +56,24 @@ body {
 .navbar-brand {
   font-weight: 500 !important;
   font-size: 25px
+}
+footer {
+  background-color: #fff;
+}
+footer h6 {
+  padding-top: 35px;
+  padding-bottom: 30px;
+  font-weight: 400;
+  font-size: 15px;
+}
+@media only screen and (min-width: 768px) {
+  .navbar {
+    height: 70px;
   }
-.navbar {
-  height: 70px;
+}
+@media only screen and (max-width: 768px) {
+  h6 {
+    font-size: 13px !important;
+  }
 }
 </style>
