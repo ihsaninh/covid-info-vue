@@ -2,7 +2,7 @@
   <div id="app">
     <b-navbar toggleable="lg" type="light" variant="faded" class="navbar-white" fixed="top">
       <b-container>
-        <b-navbar-brand href="#" style="navbar-brand">COVID-19</b-navbar-brand>
+        <b-navbar-brand to="/" style="navbar-brand">COVID-19</b-navbar-brand>
 
         <b-navbar-toggle target="nav-collapse"></b-navbar-toggle>
 

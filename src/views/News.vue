@@ -37,8 +37,10 @@
           </b-row>
         </b-card>
       </div>
-     <b-button block variant="outline-success" @click="loadMore" class="mt-5">Load Berita Lainnya</b-button>
     </b-container>
+    <b-container>
+       <b-button block variant="outline-success" @click="loadMore" class="mt-5">Load Berita Lainnya</b-button>
+     </b-container>
     <Footer />
   </div>
 </template>
