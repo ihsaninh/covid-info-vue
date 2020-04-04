@@ -17,8 +17,8 @@
               <b-card-text>Indonesia</b-card-text>
             </b-col>
             <b-col col lg="4">
-              <b-card-text class="card-text text-right">{{ thousandFormatter(dataGlobal.confirmed.value) }}</b-card-text>
-              <b-card-text class="text-right">{{ dataId[0].positif }}</b-card-text>
+              <b-card-text class="card-text text-right">{{ thousandFormatter(globalData.confirmed.value) }}</b-card-text>
+              <b-card-text class="text-right">{{ idData[0].positif }}</b-card-text>
             </b-col>
           </b-row>
         </b-card>
@@ -41,8 +41,8 @@
               <b-card-text>Indonesia</b-card-text>
             </b-col>
             <b-col col lg="4">
-              <b-card-text class="card-text text-right">{{ thousandFormatter(dataGlobal.recovered.value) }}</b-card-text>
-              <b-card-text class="text-right">{{ dataId[0].sembuh }}</b-card-text>
+              <b-card-text class="card-text text-right">{{ thousandFormatter(globalData.recovered.value) }}</b-card-text>
+              <b-card-text class="text-right">{{ idData[0].sembuh }}</b-card-text>
             </b-col>
           </b-row>
         </b-card>
@@ -65,8 +65,8 @@
               <b-card-text>Indonesia</b-card-text>
             </b-col>
             <b-col col lg="4">
-              <b-card-text class="card-text text-right">{{ thousandFormatter(dataGlobal.deaths.value) }}</b-card-text>
-              <b-card-text class="text-right">{{ dataId[0].meninggal }}</b-card-text>
+              <b-card-text class="card-text text-right">{{ thousandFormatter(globalData.deaths.value) }}</b-card-text>
+              <b-card-text class="text-right">{{ idData[0].meninggal }}</b-card-text>
             </b-col>
           </b-row>
         </b-card>
@@ -87,8 +87,6 @@
 </template>
 
 <script>
-
-import axios from 'axios';
 import { ContentLoader } from 'vue-content-loader'
 
 import { thousandFormatter } from '../utils/helper'
@@ -98,39 +96,22 @@ export default {
   components: {
     ContentLoader
   },
-
-  data () {
-    return {
-      dataId: [],
-      isLoading: false,
-      dataGlobal: {}
-    }
-  },
-
   mounted () {
-    this.getIdCases();
-    this.getGlobalCases();
+    this.$store.dispatch('getDataGlobal');
+    this.$store.dispatch('getDataId');
   },
-
   methods: {
     thousandFormatter,
-    async getIdCases() {
-      try {
-        this.isLoading = true;
-        const response = await axios.get('https://api.kawalcorona.com/indonesia/')
-        this.dataId = response.data;  
-        this.isLoading = false;      
-      } catch (error) {
-        // error
-      }
+  },
+  computed: {
+    globalData() {
+      return this.$store.state.dataGlobal;
     },
-    async getGlobalCases() {
-      try {
-        const response = await axios.get('https://covid19.mathdro.id/api/')
-        this.dataGlobal = response.data; 
-      } catch (error) {
-        // error
-      }   
+    idData() {
+      return this.$store.state.dataId;
+    },
+    isLoading() {
+      return this.$store.state.dataLoading
     }
   }
 }

@@ -16,7 +16,7 @@ export const router  = new VueRouter({
       path: '',
       component: Home, 
       meta: {
-        title: 'Covid 19 Info',
+        title: 'Covid-19 Info',
       }
     },
     { 

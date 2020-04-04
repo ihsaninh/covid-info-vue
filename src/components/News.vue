@@ -23,33 +23,23 @@
 </template>
 
 <script>
-import axios from 'axios';
-
 import { limitCharacter, formatDate, slug } from '../utils/helper'
 
 export default {
   name: 'News',
-  data () {
-    return {
-      allNews: [],
-    }
-  },
   mounted () {
-    this.getNews();
+    this.$store.dispatch('getNews');
   },
   methods: {
     limitCharacter,
     formatDate,
     slug,
-    async getNews () {
-      try {
-        const response = await axios.get('https://newsapi.org/v2/everything?q=corona+covid&apiKey=6566df4437f94a3bb6e92809f06f46e8&language=id&sortBy=publishedAt&pageSize=5');
-        this.allNews = response.data.articles;
-      } catch (error) {
-        // error
-      }
-    }
   },
+  computed: {
+    allNews(){
+     return this.$store.state.dataNews
+    }
+  }
 }
 </script>
 

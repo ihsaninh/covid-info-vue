@@ -4,7 +4,7 @@
       <b-card>
         <div>
           <h6 class="mb-3 info-title">Data Kasus Coronavirus di Indonesia Berdasarkan Provinsi</h6>
-          <b-table :items="itemsId" :busy="isLoading" :fields="fieldsId" bordered sticky-header="700px">
+          <b-table :items="dataDetailId" :busy="isLoading" :fields="fieldsId" bordered sticky-header="700px">
             <template v-slot:cell(index)="data">
               {{ data.index + 1 }}
             </template>
@@ -28,7 +28,7 @@
       <b-card>
         <div>
           <h6 class="mb-3 info-title">Kasus Coronavirus Global (Data by JHU)</h6>
-          <b-table :items="itemsGlobal" :busy="isLoading" :fields="fieldsGlobal" bordered sticky-header="700px">
+          <b-table :items="dataDetailGlobal" :busy="isLoading" :fields="fieldsGlobal" bordered sticky-header="700px">
             <template v-slot:cell(index)="data">
               {{ data.index + 1 }}
             </template>
@@ -52,8 +52,6 @@
 </template>
 
 <script>
-import axios from 'axios';
-
 import { fieldsId, fieldsGlobal } from '../utils/constant'
 import { thousandFormatter } from '../utils/helper';
 
@@ -62,39 +60,25 @@ export default {
   data() {
     return {
       fieldsId,
-      itemsId: [],
-      itemsGlobal: [],
       fieldsGlobal,
-      isLoading: false,
    }
   },
   mounted () {
-    this.getDetailDataId();
-    this.getDetailGlobal();
+    this.$store.dispatch('getDetailDataGlobal');
+    this.$store.dispatch('getDetailDataId');
   },
   methods: {
     thousandFormatter,
-    async getDetailDataId() {
-      try {
-        this.isLoading = true;
-        const response = await axios.get('https://api.kawalcorona.com/indonesia/provinsi/');
-        response.data.forEach(el => {
-          this.itemsId.push(el.attributes); 
-        });
-        this.isLoading = false;
-      } catch (error) {
-        // 
-      }
+  },
+  computed: {
+    dataDetailGlobal() {
+     return this.$store.state.dataDetailGlobal;
     },
-    async getDetailGlobal() {
-      try {
-        const response = await axios.get('https://api.kawalcorona.com/');
-        response.data.forEach(el => {
-          this.itemsGlobal.push(el.attributes); 
-        });
-      } catch (error) {
-        // 
-      }
+    dataDetailId() {
+     return this.$store.state.dataDetailId;
+    },
+    isLoading() {
+      return this.$store.state.tableLoading
     }
   }
 }

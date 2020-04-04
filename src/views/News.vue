@@ -2,8 +2,8 @@
   <div>
     <b-container class="martop">
 
-      <div v-if="!loading">
-        <b-card v-for="news in allNews" v-bind:key="news.id">
+      <div v-if="!isLoading">
+        <b-card v-for="news in dataNewsPaging" v-bind:key="news.id">
           <b-row class="mt-2">
             <b-col sm="8">
               <h5 class="title"><a :href='news.url' target="_blank">{{ news.title }}</a></h5>
@@ -46,7 +46,6 @@
 </template>
 
 <script>
-import axios from 'axios';
 import { ContentLoader } from 'vue-content-loader'
 
 import { limitCharacter, formatDate, slug } from '../utils/helper';
@@ -54,34 +53,33 @@ import { limitCharacter, formatDate, slug } from '../utils/helper';
 export default {
   data () {
     return {
-      allNews: [],
-      loading: false,
-      page: 1
+      page: 3
     }
   },
   components: {
-    ContentLoader
+    ContentLoader,
   },
   mounted () {
-    this.getNews();
+    this.$store.dispatch('getNewsPaging', {
+      page: 1
+    });
+  },
+  computed: {
+    dataNewsPaging() {
+     return this.$store.state.dataNewsPaging;
+    },
+    isLoading() {
+      return this.$store.state.newsLoading;
+    }
   },
   methods: {
     limitCharacter,
     formatDate,
     slug,
-    async getNews () {
-      try {
-        this.loading = true;
-        const response = await axios.get(`https://newsapi.org/v2/everything?q=corona+covid&apiKey=6566df4437f94a3bb6e92809f06f46e8&language=id&sortBy=publishedAt&pageSize=5&page=${this.page}`);
-        this.allNews = [...this.allNews, ...response.data.articles];
-        this.loading = false;
-      } catch (error) {
-        // error
-      }
-    },
     loadMore () {
-      this.page++;
-      this.getNews();      
+      this.$store.dispatch('getNewsPaging', {
+        page: this.page++
+      });     
     },
   }
 }
