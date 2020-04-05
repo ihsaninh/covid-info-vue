@@ -31,7 +31,7 @@ export const getDetailDataGlobal = async ({ commit, state }) => {
       commit('GET_DETAIL_GLOBAL', state.dataDetailGlobal) 
     });
   } catch (error) {
-    state.tableLoading = false;
+    // error
   }
 }
 

@@ -9,7 +9,7 @@
     <div class="mt-5">
       <b-card-group deck>
 
-        <b-card bg-variant="kuning" v-if="!isLoading">
+        <b-card bg-variant="kuning" v-if="!dataLoading">
           <b-card-text class="card-text-header">Positif COVID-19</b-card-text>
           <b-row>
             <b-col col lg="8">
@@ -17,8 +17,8 @@
               <b-card-text>Indonesia</b-card-text>
             </b-col>
             <b-col col lg="4">
-              <b-card-text class="card-text text-right">{{ thousandFormatter(globalData.confirmed.value) }}</b-card-text>
-              <b-card-text class="text-right">{{ idData[0].positif }}</b-card-text>
+              <b-card-text class="card-text text-right">{{ thousandFormatter(dataGlobal.confirmed.value) }}</b-card-text>
+              <b-card-text class="text-right">{{ dataId[0].positif }}</b-card-text>
             </b-col>
           </b-row>
         </b-card>
@@ -33,7 +33,7 @@
           </b-row>
         </b-card>
 
-        <b-card bg-variant="hijau" class="success" v-if="!isLoading">
+        <b-card bg-variant="hijau" class="success" v-if="!dataLoading">
           <b-card-text class="card-text-header">Sembuh</b-card-text>
           <b-row>
             <b-col col lg="8">
@@ -41,8 +41,8 @@
               <b-card-text>Indonesia</b-card-text>
             </b-col>
             <b-col col lg="4">
-              <b-card-text class="card-text text-right">{{ thousandFormatter(globalData.recovered.value) }}</b-card-text>
-              <b-card-text class="text-right">{{ idData[0].sembuh }}</b-card-text>
+              <b-card-text class="card-text text-right">{{ thousandFormatter(dataGlobal.recovered.value) }}</b-card-text>
+              <b-card-text class="text-right">{{ dataId[0].sembuh }}</b-card-text>
             </b-col>
           </b-row>
         </b-card>
@@ -57,7 +57,7 @@
           </b-row>
         </b-card>
 
-        <b-card bg-variant="oren" v-if="!isLoading">
+        <b-card bg-variant="oren" v-if="!dataLoading">
           <b-card-text class="card-text-header">Meninggal</b-card-text>
           <b-row>
             <b-col col lg="8">
@@ -65,8 +65,8 @@
               <b-card-text>Indonesia</b-card-text>
             </b-col>
             <b-col col lg="4">
-              <b-card-text class="card-text text-right">{{ thousandFormatter(globalData.deaths.value) }}</b-card-text>
-              <b-card-text class="text-right">{{ idData[0].meninggal }}</b-card-text>
+              <b-card-text class="card-text text-right">{{ thousandFormatter(dataGlobal.deaths.value) }}</b-card-text>
+              <b-card-text class="text-right">{{ dataId[0].meninggal }}</b-card-text>
             </b-col>
           </b-row>
         </b-card>
@@ -87,6 +87,7 @@
 </template>
 
 <script>
+import { mapActions, mapState } from 'vuex';
 import { ContentLoader } from 'vue-content-loader'
 
 import { thousandFormatter } from '../utils/helper'
@@ -97,22 +98,22 @@ export default {
     ContentLoader
   },
   mounted () {
-    this.$store.dispatch('getDataGlobal');
-    this.$store.dispatch('getDataId');
+    this.getDataId();
+    this.getDataGlobal();
   },
   methods: {
+    ...mapActions([
+      'getDataId',
+      'getDataGlobal'
+    ]),
     thousandFormatter,
   },
   computed: {
-    globalData() {
-      return this.$store.state.dataGlobal;
-    },
-    idData() {
-      return this.$store.state.dataId;
-    },
-    isLoading() {
-      return this.$store.state.dataLoading
-    }
+    ...mapState([
+      'dataGlobal',
+      'dataId',
+      'dataLoading'
+    ])
   }
 }
 </script>

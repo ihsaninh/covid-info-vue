@@ -4,7 +4,7 @@
       <b-card>
         <div>
           <h6 class="mb-3 info-title">Data Kasus Coronavirus di Indonesia Berdasarkan Provinsi</h6>
-          <b-table :items="dataDetailId" :busy="isLoading" :fields="fieldsId" bordered sticky-header="700px">
+          <b-table :items="dataDetailId" :busy="tableLoading" :fields="fieldsId" bordered sticky-header="700px">
             <template v-slot:cell(index)="data">
               {{ data.index + 1 }}
             </template>
@@ -18,7 +18,7 @@
               {{ thousandFormatter(data.item.Kasus_Meni) }}
             </template>
           </b-table>
-          <div class="text-center text-danger my-2" v-if="isLoading">
+          <div class="text-center text-danger my-2" v-if="tableLoading">
             <b-spinner label="Loading..." class="align-middle" variant="dark"></b-spinner>
           </div>
         </div>
@@ -28,7 +28,7 @@
       <b-card>
         <div>
           <h6 class="mb-3 info-title">Kasus Coronavirus Global (Data by JHU)</h6>
-          <b-table :items="dataDetailGlobal" :busy="isLoading" :fields="fieldsGlobal" bordered sticky-header="700px">
+          <b-table :items="dataDetailGlobal" :busy="tableLoading" :fields="fieldsGlobal" bordered sticky-header="700px">
             <template v-slot:cell(index)="data">
               {{ data.index + 1 }}
             </template>
@@ -42,7 +42,7 @@
               {{ thousandFormatter(data.item.Deaths) }}
             </template>
           </b-table>
-          <div class="text-center text-danger my-2" v-if="isLoading">
+          <div class="text-center text-danger my-2" v-if="tableLoading">
             <b-spinner label="Loading..." class="align-middle" variant="dark"></b-spinner>
           </div>
         </div>
@@ -52,6 +52,7 @@
 </template>
 
 <script>
+import { mapState, mapActions } from 'vuex'
 import { fieldsId, fieldsGlobal } from '../utils/constant'
 import { thousandFormatter } from '../utils/helper';
 
@@ -64,22 +65,22 @@ export default {
    }
   },
   mounted () {
-    this.$store.dispatch('getDetailDataGlobal');
-    this.$store.dispatch('getDetailDataId');
+    this.getDetailDataId();
+    this.getDetailDataGlobal();
   },
   methods: {
+    ...mapActions([
+      'getDetailDataId',
+      'getDetailDataGlobal'
+    ]),
     thousandFormatter,
   },
   computed: {
-    dataDetailGlobal() {
-     return this.$store.state.dataDetailGlobal;
-    },
-    dataDetailId() {
-     return this.$store.state.dataDetailId;
-    },
-    isLoading() {
-      return this.$store.state.tableLoading
-    }
+    ...mapState([
+      'dataDetailGlobal',
+      'dataDetailId',
+      'tableLoading'
+    ])
   }
 }
 </script>

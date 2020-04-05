@@ -3,7 +3,7 @@
     <b-card-group deck>
       <b-card>
         <h3 class="news-title">Berita Terkini</h3>
-        <b-row class="mt-5" v-for="news in allNews" v-bind:key="news.id">
+        <b-row class="mt-5" v-for="news in dataNews" v-bind:key="news.id">
           <b-col sm="8">
             <h5 class="title"><a :href='news.url' target="_blank">{{ news.title }}</a></h5>
             <h6 class="mt-3 timestamp">{{ formatDate(news.publishedAt) }}</h6>
@@ -23,22 +23,22 @@
 </template>
 
 <script>
+import { mapState, mapActions } from 'vuex'
 import { limitCharacter, formatDate, slug } from '../utils/helper'
 
 export default {
   name: 'News',
   mounted () {
-    this.$store.dispatch('getNews');
+    this.getNews();
   },
   methods: {
-    limitCharacter,
-    formatDate,
+    ...mapActions(['getNews']),
     slug,
+    formatDate,
+    limitCharacter,
   },
   computed: {
-    allNews(){
-     return this.$store.state.dataNews
-    }
+    ...mapState(['dataNews'])
   }
 }
 </script>

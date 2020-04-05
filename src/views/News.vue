@@ -40,7 +40,7 @@
 
     </b-container>
     <b-container>
-       <b-button block variant="outline-success" @click="loadMore" class="mt-5">Load Berita Lainnya</b-button>
+       <b-button block variant="outline-success" @click="loadMore()" class="mt-5">Load Berita Lainnya</b-button>
      </b-container>
   </div>
 </template>
@@ -53,7 +53,7 @@ import { limitCharacter, formatDate, slug } from '../utils/helper';
 export default {
   data () {
     return {
-      page: 3
+      page: 1
     }
   },
   components: {
@@ -61,7 +61,7 @@ export default {
   },
   mounted () {
     this.$store.dispatch('getNewsPaging', {
-      page: 1
+      page: this.page
     });
   },
   computed: {
@@ -78,7 +78,7 @@ export default {
     slug,
     loadMore () {
       this.$store.dispatch('getNewsPaging', {
-        page: this.page++
+        page: this.page + 1
       });     
     },
   }
