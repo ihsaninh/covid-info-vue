@@ -23,6 +23,11 @@ export const fieldsId = [
     key: 'Kasus_Meni',
     label: 'Meninggal',
     sortable: true
+  },
+  {
+    key: 'active',
+    label: 'Aktif',
+    sortable: true
   }
 ]
 
@@ -52,4 +57,9 @@ export const fieldsGlobal = [
     label: 'Meninggal',
     sortable: true
   },
+  {
+    key: 'active',
+    label: 'Aktif',
+    sortable: true
+  }
 ]

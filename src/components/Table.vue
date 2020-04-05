@@ -17,6 +17,9 @@
             <template v-slot:cell(Kasus_Meni)="data">
               {{ thousandFormatter(data.item.Kasus_Meni) }}
             </template>
+            <template v-slot:cell(active)="data">
+              {{ thousandFormatter((data.item.Kasus_Posi - data.item.Kasus_Semb - data.item.Kasus_Meni)) }}
+            </template>
           </b-table>
           <div class="text-center text-danger my-2" v-if="isLoading">
             <b-spinner label="Loading..." class="align-middle" variant="dark"></b-spinner>
@@ -40,6 +43,9 @@
             </template>
             <template v-slot:cell(Deaths)="data">
               {{ thousandFormatter(data.item.Deaths) }}
+            </template>
+            <template v-slot:cell(active)="data">
+              {{ thousandFormatter((data.item.Confirmed - data.item.Recovered - data.item.Deaths)) }}
             </template>
           </b-table>
           <div class="text-center text-danger my-2" v-if="isLoading">
