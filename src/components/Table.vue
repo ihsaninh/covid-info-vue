@@ -3,8 +3,16 @@
     <b-card-group deck>
       <b-card>
         <div>
-          <h6 class="mb-3 info-title">Data Kasus Coronavirus di Indonesia Berdasarkan Provinsi</h6>
-          <b-table :items="itemsId" :busy="isLoading" :fields="fieldsId" bordered sticky-header="700px">
+          <h6 class="mb-3 info-title">
+            Data Kasus Coronavirus di Indonesia Berdasarkan Provinsi
+          </h6>
+          <b-table
+            :items="itemsId"
+            :busy="isLoading"
+            :fields="fieldsId"
+            bordered
+            sticky-header="700px"
+          >
             <template v-slot:cell(index)="data">
               {{ data.index + 1 }}
             </template>
@@ -18,11 +26,21 @@
               {{ thousandFormatter(data.item.Kasus_Meni) }}
             </template>
             <template v-slot:cell(active)="data">
-              {{ thousandFormatter((data.item.Kasus_Posi - data.item.Kasus_Semb - data.item.Kasus_Meni)) }}
+              {{
+                thousandFormatter(
+                  data.item.Kasus_Posi -
+                    data.item.Kasus_Semb -
+                    data.item.Kasus_Meni
+                )
+              }}
             </template>
           </b-table>
           <div class="text-center text-danger my-2" v-if="isLoading">
-            <b-spinner label="Loading..." class="align-middle" variant="dark"></b-spinner>
+            <b-spinner
+              label="Loading..."
+              class="align-middle"
+              variant="dark"
+            ></b-spinner>
           </div>
         </div>
       </b-card>
@@ -30,8 +48,16 @@
     <b-card-group deck class="mt-5">
       <b-card>
         <div>
-          <h6 class="mb-3 info-title">Kasus Coronavirus Global (Data by JHU)</h6>
-          <b-table :items="itemsGlobal" :busy="isLoading" :fields="fieldsGlobal" bordered sticky-header="700px">
+          <h6 class="mb-3 info-title">
+            Kasus Coronavirus Global (Data by JHU)
+          </h6>
+          <b-table
+            :items="itemsGlobal"
+            :busy="isLoading"
+            :fields="fieldsGlobal"
+            bordered
+            sticky-header="700px"
+          >
             <template v-slot:cell(index)="data">
               {{ data.index + 1 }}
             </template>
@@ -45,11 +71,19 @@
               {{ thousandFormatter(data.item.Deaths) }}
             </template>
             <template v-slot:cell(active)="data">
-              {{ thousandFormatter((data.item.Confirmed - data.item.Recovered - data.item.Deaths)) }}
+              {{
+                thousandFormatter(
+                  data.item.Confirmed - data.item.Recovered - data.item.Deaths
+                )
+              }}
             </template>
           </b-table>
           <div class="text-center text-danger my-2" v-if="isLoading">
-            <b-spinner label="Loading..." class="align-middle" variant="dark"></b-spinner>
+            <b-spinner
+              label="Loading..."
+              class="align-middle"
+              variant="dark"
+            ></b-spinner>
           </div>
         </div>
       </b-card>
@@ -60,7 +94,7 @@
 <script>
 import axios from 'axios';
 
-import { fieldsId, fieldsGlobal } from '../utils/constant'
+import { fieldsId, fieldsGlobal } from '../utils/constant';
 import { thousandFormatter } from '../utils/helper';
 
 export default {
@@ -72,9 +106,9 @@ export default {
       itemsGlobal: [],
       fieldsGlobal,
       isLoading: false,
-   }
+    };
   },
-  mounted () {
+  mounted() {
     this.getDetailDataId();
     this.getDetailGlobal();
   },
@@ -83,33 +117,35 @@ export default {
     async getDetailDataId() {
       try {
         this.isLoading = true;
-        const response = await axios.get('https://api.kawalcorona.com/indonesia/provinsi/');
-        response.data.forEach(el => {
-          this.itemsId.push(el.attributes); 
+        const response = await axios.get(
+          'https://api.kawalcorona.com/indonesia/provinsi/'
+        );
+        response.data.forEach((el) => {
+          this.itemsId.push(el.attributes);
         });
         this.isLoading = false;
       } catch (error) {
-        // 
+        //
       }
     },
     async getDetailGlobal() {
       try {
         const response = await axios.get('https://api.kawalcorona.com/');
-        response.data.forEach(el => {
-          this.itemsGlobal.push(el.attributes); 
+        response.data.forEach((el) => {
+          this.itemsGlobal.push(el.attributes);
         });
       } catch (error) {
-        // 
+        //
       }
-    }
-  }
-}
+    },
+  },
+};
 </script>
 
 <style scoped>
 .card {
-   box-shadow: 0 0 4px 0 rgba(0,0,0,.05), 0 4px 24px 0 rgba(0,0,0,.1);
-   border: none;
+  box-shadow: 0 0 4px 0 rgba(0, 0, 0, 0.05), 0 4px 24px 0 rgba(0, 0, 0, 0.1);
+  border: none;
 }
 .info-title {
   line-height: 25px;

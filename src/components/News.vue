@@ -5,58 +5,80 @@
         <h3 class="news-title">Berita Terkini</h3>
         <b-row class="mt-5" v-for="news in allNews" v-bind:key="news.id">
           <b-col sm="8">
-            <h5 class="title"><a :href='news.url' target="_blank">{{ news.title }}</a></h5>
+            <h5 class="title">
+              <a :href="news.url" target="_blank">{{ news.title }}</a>
+            </h5>
             <h6 class="mt-3 timestamp">{{ formatDate(news.publishedAt) }}</h6>
-            <p class="mt-4 description" v-if="news.source.name !== 'Youtube.com'">{{ `${news.source.name} - ${limitCharacter(news.content, 180)}`}}</p>
-            <a :href="news.url" v-else class="btn btn-custom link-ku" target="_blank">Lihat di Youtube</a>
+            <p
+              class="mt-4 description"
+              v-if="news.source.name !== 'Youtube.com'"
+            >
+              {{ `${news.source.name} - ${limitCharacter(news.content, 180)}` }}
+            </p>
+            <a
+              :href="news.url"
+              v-else
+              class="btn btn-custom link-ku"
+              target="_blank"
+              >Lihat di Youtube</a
+            >
           </b-col>
           <b-col sm="4" class="d-none d-sm-block">
-            <b-img rounded :src="news.urlToImage" fluid alt="Responsive image"></b-img>
+            <b-img
+              rounded
+              :src="news.urlToImage"
+              fluid
+              alt="Responsive image"
+            ></b-img>
           </b-col>
         </b-row>
         <b-row class="justify-content-center mt-4">
-          <router-link to="/news" class="btn btn-outline-success">Lihat Selengkapnya</router-link>
+          <router-link to="/news" class="btn btn-outline-success"
+            >Lihat Selengkapnya</router-link
+          >
         </b-row>
       </b-card>
     </b-card-group>
-  </b-container> 
+  </b-container>
 </template>
 
 <script>
 import axios from 'axios';
 
-import { limitCharacter, formatDate, slug } from '../utils/helper'
+import { limitCharacter, formatDate, slug } from '../utils/helper';
 
 export default {
   name: 'News',
-  data () {
+  data() {
     return {
       allNews: [],
-    }
+    };
   },
-  mounted () {
+  mounted() {
     this.getNews();
   },
   methods: {
     limitCharacter,
     formatDate,
     slug,
-    async getNews () {
+    async getNews() {
       try {
-        const response = await axios.get('https://newsapi.org/v2/everything?q=corona+covid&apiKey=6566df4437f94a3bb6e92809f06f46e8&language=id&sortBy=publishedAt&pageSize=5');
+        const response = await axios.get(
+          'https://newsapi.org/v2/everything?q=corona+covid&apiKey=6566df4437f94a3bb6e92809f06f46e8&language=id&sortBy=publishedAt&pageSize=5'
+        );
         this.allNews = response.data.articles;
       } catch (error) {
         // error
       }
-    }
+    },
   },
-}
+};
 </script>
 
 <style scoped>
 .card {
   background-color: #fff;
-  box-shadow: 0 0 4px 0 rgba(0,0,0,.05), 0 4px 24px 0 rgba(0,0,0,.1);
+  box-shadow: 0 0 4px 0 rgba(0, 0, 0, 0.05), 0 4px 24px 0 rgba(0, 0, 0, 0.1);
   padding: 25px;
   border: none;
 }
@@ -85,7 +107,7 @@ export default {
 }
 .btn-custom {
   background-color: #4d9143;
-  color: #ffffff
+  color: #ffffff;
 }
 .btn-custom:hover {
   color: #eee;
@@ -95,7 +117,7 @@ export default {
   border-width: 2px;
 }
 .btn {
-  border-radius: .5rem
+  border-radius: 0.5rem;
 }
 .btn-outline-success:hover {
   background-color: #c6f6d5;

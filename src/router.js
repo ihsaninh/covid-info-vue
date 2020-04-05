@@ -1,47 +1,46 @@
 /* eslint-disable no-unused-vars */
-import Vue from 'vue'
-import VueRouter from 'vue-router'
+import Vue from 'vue';
+import VueRouter from 'vue-router';
 
 import Home from './views/Home';
 import About from './views/About';
 import News from './views/News';
 
-Vue.use(VueRouter)
+Vue.use(VueRouter);
 
-export const router  = new VueRouter({
+export const router = new VueRouter({
   mode: 'history',
   linkActiveClass: 'active',
   routes: [
-    { 
+    {
       path: '',
-      component: Home, 
+      component: Home,
       meta: {
-        title: 'Covid 19 Info',
-      }
+        title: 'Covid-19 Info',
+      },
     },
-    { 
-      path: '/news', 
+    {
+      path: '/news',
       component: News,
       meta: {
         title: 'Covid-19 News',
-      } 
+      },
     },
-    { 
-      path: '/about', 
+    {
+      path: '/about',
       component: About,
       meta: {
-        title: 'About Covid-19'
-      } 
+        title: 'About Covid-19',
+      },
     },
   ],
-  scrollBehavior (to, from, savedPosition) {
-    return { x: 0, y: 0 }
-  }
-})
-
+  scrollBehavior(to, from, savedPosition) {
+    return { x: 0, y: 0 };
+  },
+});
 
 router.afterEach((to, from) => {
   Vue.nextTick(() => {
-      document.title = to.meta.title;
+    document.title = to.meta.title;
   });
 });

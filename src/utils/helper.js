@@ -1,17 +1,16 @@
 export const thousandFormatter = (num) => {
-  if(num){
+  if (num) {
     return num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
   }
-
   return num;
 };
 
 export const removeSource = (str) => {
-  const strBaru = str.split(".");
+  const strBaru = str.split('.');
   return strBaru[0];
-}
+};
 
-export const formatDate = timestamp => {
+export const formatDate = (timestamp) => {
   const date = new Date(timestamp || 0);
   const day = date.getDay();
   const month = date.getMonth();
@@ -26,9 +25,9 @@ export const formatDate = timestamp => {
     'Selasa',
     'Rabu',
     'Kamis',
-    'Jum\'at',
-    'Sabtu'
-  ]
+    "Jum'at",
+    'Sabtu',
+  ];
 
   const monthName = [
     'Jan',
@@ -54,15 +53,12 @@ export const formatDate = timestamp => {
   }
 
   return `${dayName[day]}, ${getDate} ${monthName[month]} ${getYears} ${getHours}:${getMinutes}`;
-
 };
 
 export const limitCharacter = (str, limit) => {
-  return (
-    str.length >= limit ? `${str.substr(0, limit)}...` : str
-  );
+  return str.length >= limit ? `${str.substr(0, limit)}...` : str;
 };
 
 export const slug = (str) => {
-  return str.replace(/ /g, "-")
+  return str.replace(/ /g, '-');
 };

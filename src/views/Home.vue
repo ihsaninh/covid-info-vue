@@ -19,9 +19,7 @@ export default {
     Table,
     News,
   },
-}
+};
 </script>
 
-<style>
-
-</style>
+<style></style>
