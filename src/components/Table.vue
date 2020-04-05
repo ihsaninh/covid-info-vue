@@ -13,24 +13,22 @@
             bordered
             sticky-header="700px"
           >
-            <template v-slot:cell(index)="data">
-              {{ data.index + 1 }}
-            </template>
-            <template v-slot:cell(Kasus_Posi)="data">
-              {{ thousandFormatter(data.item.Kasus_Posi) }}
-            </template>
-            <template v-slot:cell(Kasus_Semb)="data">
-              {{ thousandFormatter(data.item.Kasus_Semb) }}
-            </template>
-            <template v-slot:cell(Kasus_Meni)="data">
-              {{ thousandFormatter(data.item.Kasus_Meni) }}
-            </template>
+            <template v-slot:cell(index)="data">{{ data.index + 1 }}</template>
+            <template v-slot:cell(Kasus_Posi)="data">{{
+              thousandFormatter(data.item.Kasus_Posi)
+            }}</template>
+            <template v-slot:cell(Kasus_Semb)="data">{{
+              thousandFormatter(data.item.Kasus_Semb)
+            }}</template>
+            <template v-slot:cell(Kasus_Meni)="data">{{
+              thousandFormatter(data.item.Kasus_Meni)
+            }}</template>
             <template v-slot:cell(active)="data">
               {{
                 thousandFormatter(
                   data.item.Kasus_Posi -
-                    data.item.Kasus_Semb -
-                    data.item.Kasus_Meni
+                  data.item.Kasus_Semb -
+                  data.item.Kasus_Meni
                 )
               }}
             </template>
@@ -58,18 +56,16 @@
             bordered
             sticky-header="700px"
           >
-            <template v-slot:cell(index)="data">
-              {{ data.index + 1 }}
-            </template>
-            <template v-slot:cell(Confirmed)="data">
-              {{ thousandFormatter(data.item.Confirmed) }}
-            </template>
-            <template v-slot:cell(Recovered)="data">
-              {{ thousandFormatter(data.item.Recovered) }}
-            </template>
-            <template v-slot:cell(Deaths)="data">
-              {{ thousandFormatter(data.item.Deaths) }}
-            </template>
+            <template v-slot:cell(index)="data">{{ data.index + 1 }}</template>
+            <template v-slot:cell(Confirmed)="data">{{
+              thousandFormatter(data.item.Confirmed)
+            }}</template>
+            <template v-slot:cell(Recovered)="data">{{
+              thousandFormatter(data.item.Recovered)
+            }}</template>
+            <template v-slot:cell(Deaths)="data">{{
+              thousandFormatter(data.item.Deaths)
+            }}</template>
             <template v-slot:cell(active)="data">
               {{
                 thousandFormatter(

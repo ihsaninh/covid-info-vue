@@ -16,12 +16,12 @@
               <b-card-text>Indonesia</b-card-text>
             </b-col>
             <b-col col lg="4">
-              <b-card-text class="card-text text-right">{{
-                thousandFormatter(dataGlobal.confirmed.value)
-              }}</b-card-text>
-              <b-card-text class="text-right">{{
-                dataId[0].positif
-              }}</b-card-text>
+              <b-card-text class="card-text text-right">
+                {{ thousandFormatter(dataGlobal.confirmed.value) }}
+              </b-card-text>
+              <b-card-text class="text-right">
+                {{ dataId[0].positif }}
+              </b-card-text>
             </b-col>
           </b-row>
         </b-card>
@@ -61,12 +61,12 @@
               <b-card-text>Indonesia</b-card-text>
             </b-col>
             <b-col col lg="4">
-              <b-card-text class="card-text text-right">{{
-                thousandFormatter(dataGlobal.recovered.value)
-              }}</b-card-text>
-              <b-card-text class="text-right">{{
-                dataId[0].sembuh
-              }}</b-card-text>
+              <b-card-text class="card-text text-right">
+                {{ thousandFormatter(dataGlobal.recovered.value) }}
+              </b-card-text>
+              <b-card-text class="text-right">
+                {{ dataId[0].sembuh }}
+              </b-card-text>
             </b-col>
           </b-row>
         </b-card>
@@ -106,12 +106,12 @@
               <b-card-text>Indonesia</b-card-text>
             </b-col>
             <b-col col lg="4">
-              <b-card-text class="card-text text-right">{{
-                thousandFormatter(dataGlobal.deaths.value)
-              }}</b-card-text>
-              <b-card-text class="text-right">{{
-                dataId[0].meninggal
-              }}</b-card-text>
+              <b-card-text class="card-text text-right">
+                {{ thousandFormatter(dataGlobal.deaths.value) }}
+              </b-card-text>
+              <b-card-text class="text-right">
+                {{ dataId[0].meninggal }}
+              </b-card-text>
             </b-col>
           </b-row>
         </b-card>
