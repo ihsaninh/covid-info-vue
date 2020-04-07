@@ -9,5 +9,5 @@ export default {
 
   dataNews: [],
   dataNewsPaging: [],
-  newsLoading: false
-}
+  newsLoading: false,
+};
