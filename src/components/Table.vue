@@ -10,7 +10,8 @@
             :items="itemsId"
             :busy="isLoading"
             :fields="fieldsId"
-            bordered
+            striped
+            head-variant="dark"
             sticky-header="700px"
           >
             <template v-slot:cell(index)="data">{{ data.index + 1 }}</template>
@@ -44,7 +45,8 @@
             :items="itemsGlobal"
             :busy="isLoading"
             :fields="fieldsGlobal"
-            bordered
+            striped
+            head-variant="dark"
             sticky-header="700px"
           >
             <template v-slot:cell(index)="data">{{ data.index + 1 }}</template>
@@ -129,5 +131,8 @@ export default {
 }
 .info-title {
   line-height: 25px;
+  font-size: 20px;
+  border-bottom: 1px solid #f1f1f1;
+  padding-bottom: 15px;
 }
 </style>
