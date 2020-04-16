@@ -54,17 +54,17 @@
         </b-card>
 
         <b-card bg-variant="hijau" class="success" v-if="!isLoading">
-          <b-card-text class="card-text-header">Sembuh</b-card-text>
+          <b-card-text class="card-text-header text-white">Sembuh</b-card-text>
           <b-row>
             <b-col col lg="8">
-              <b-card-text class="card-text">Global</b-card-text>
-              <b-card-text>Indonesia</b-card-text>
+              <b-card-text class="card-text text-white">Global</b-card-text>
+              <b-card-text class="text-white">Indonesia</b-card-text>
             </b-col>
             <b-col col lg="4">
-              <b-card-text class="card-text text-right">
+              <b-card-text class="card-text text-right text-white">
                 {{ thousandFormatter(dataGlobal.recovered.value) }}
               </b-card-text>
-              <b-card-text class="text-right">
+              <b-card-text class="text-right text-white">
                 {{ dataId[0].sembuh }}
               </b-card-text>
             </b-col>
@@ -182,16 +182,16 @@ export default {
         );
         this.dataId = response.data;
         this.isLoading = false;
-      } catch (error) {
-        // error
+      } catch (err) {
+        console.log(err)
       }
     },
     async getGlobalCases() {
       try {
         const response = await axios.get('https://covid19.mathdro.id/api/');
         this.dataGlobal = response.data;
-      } catch (error) {
-        // error
+      } catch (err) {
+        console.log(err)
       }
     },
   },
@@ -208,16 +208,24 @@ h5 {
   font-size: 16px;
 }
 .bg-kuning {
-  background-color: #fcdfe0 !important;
-  border-color: #ffb4b5 !important;
+  background-color: #f2a365 !important;
+  border: none !important;
+  border-radius: 10px;
+  color: white;
+  box-shadow: 0 .15rem 1.75rem 0 rgba(58,59,69,.15)!important;
 }
 .bg-hijau {
-  background-color: #d3eee3 !important;
-  border-color: #91dcbd !important;
+  background-color: #1cc88a !important;
+  border: none !important;
+  border-radius: 10px;
+  box-shadow: 0 .15rem 1.75rem 0 rgba(58,59,69,.15)!important;
 }
 .bg-oren {
-  background-color: #fbeadf !important;
-  border-color: #fed1b1 !important;
+  background-color: #FF6384 !important;
+  border: none !important;
+  color: white;
+  border-radius: 10px;
+  box-shadow: 0 .15rem 1.75rem 0 rgba(58,59,69,.15)!important;
 }
 .card-text-header {
   font-size: 20px;

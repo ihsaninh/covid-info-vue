@@ -37,7 +37,7 @@ export default {
 </script>
 <style>
 #app {
-  font-family: 'IBM Plex Sans';
+  font-family: 'Roboto';
 }
 th {
   font-weight: 500;
@@ -47,12 +47,11 @@ td {
   font-size: 14px !important;
 }
 body {
-  background-color: #f7fafc !important;
+  background-color: #fefefe !important;
 }
 .navbar-white {
-  background-color: rgba(255, 255, 255, 0.85) !important;
-  box-shadow: 0 0 32px -4px rgba(0, 0, 0, 0.15);
-  border-bottom: 1px solid #eaedf1;
+  background-color: rgba(255, 255, 255, 0.25) !important;
+  box-shadow: 0 0 32px -4px rgba(0, 0, 0, 0.080);
   backdrop-filter: saturate(180%) blur(20px);
 }
 .navbar-brand {

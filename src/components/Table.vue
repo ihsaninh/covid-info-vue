@@ -23,15 +23,6 @@
             <template v-slot:cell(Kasus_Meni)="data">{{
               thousandFormatter(data.item.Kasus_Meni)
             }}</template>
-            <template v-slot:cell(active)="data">
-              {{
-                thousandFormatter(
-                  data.item.Kasus_Posi -
-                  data.item.Kasus_Semb -
-                  data.item.Kasus_Meni
-                )
-              }}
-            </template>
           </b-table>
           <div class="text-center text-danger my-2" v-if="isLoading">
             <b-spinner
@@ -66,13 +57,6 @@
             <template v-slot:cell(Deaths)="data">{{
               thousandFormatter(data.item.Deaths)
             }}</template>
-            <template v-slot:cell(active)="data">
-              {{
-                thousandFormatter(
-                  data.item.Confirmed - data.item.Recovered - data.item.Deaths
-                )
-              }}
-            </template>
           </b-table>
           <div class="text-center text-danger my-2" v-if="isLoading">
             <b-spinner
@@ -140,7 +124,7 @@ export default {
 
 <style scoped>
 .card {
-  box-shadow: 0 0 4px 0 rgba(0, 0, 0, 0.05), 0 4px 24px 0 rgba(0, 0, 0, 0.1);
+  box-shadow: 0 0 4px 0 rgba(0, 0, 0, 0.01), 0 4px 24px 0 rgba(0, 0, 0, 0.05);
   border: none;
 }
 .info-title {

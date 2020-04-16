@@ -78,7 +78,7 @@ export default {
 <style scoped>
 .card {
   background-color: #fff;
-  box-shadow: 0 0 4px 0 rgba(0, 0, 0, 0.05), 0 4px 24px 0 rgba(0, 0, 0, 0.1);
+  box-shadow: 0 0 4px 0 rgba(0, 0, 0, 0.01), 0 4px 24px 0 rgba(0, 0, 0, 0.05);
   padding: 25px;
   border: none;
 }

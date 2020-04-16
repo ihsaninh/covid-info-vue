@@ -24,11 +24,6 @@ export const fieldsId = [
     label: 'Meninggal',
     sortable: true,
   },
-  {
-    key: 'active',
-    label: 'Aktif',
-    sortable: true,
-  },
 ];
 
 export const fieldsGlobal = [
@@ -55,11 +50,6 @@ export const fieldsGlobal = [
   {
     key: 'Deaths',
     label: 'Meninggal',
-    sortable: true,
-  },
-  {
-    key: 'active',
-    label: 'Aktif',
     sortable: true,
   },
 ];
