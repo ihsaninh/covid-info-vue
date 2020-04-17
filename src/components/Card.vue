@@ -12,15 +12,15 @@
           <b-card-text class="card-text-header">Positif COVID-19</b-card-text>
           <b-row>
             <b-col col lg="8">
-              <b-card-text class="card-text">Global</b-card-text>
               <b-card-text>Indonesia</b-card-text>
+              <b-card-text class="card-text">Global</b-card-text>
             </b-col>
             <b-col col lg="4">
-              <b-card-text class="card-text text-right">
-                {{ thousandFormatter(dataGlobal.confirmed.value) }}
-              </b-card-text>
               <b-card-text class="text-right">
                 {{ dataId[0].positif }}
+              </b-card-text>
+              <b-card-text class="card-text text-right">
+                {{ thousandFormatter(dataGlobal.confirmed.value) }}
               </b-card-text>
             </b-col>
           </b-row>
@@ -57,15 +57,15 @@
           <b-card-text class="card-text-header text-white">Sembuh</b-card-text>
           <b-row>
             <b-col col lg="8">
-              <b-card-text class="card-text text-white">Global</b-card-text>
               <b-card-text class="text-white">Indonesia</b-card-text>
+              <b-card-text class="card-text text-white">Global</b-card-text>
             </b-col>
             <b-col col lg="4">
-              <b-card-text class="card-text text-right text-white">
-                {{ thousandFormatter(dataGlobal.recovered.value) }}
-              </b-card-text>
               <b-card-text class="text-right text-white">
                 {{ dataId[0].sembuh }}
+              </b-card-text>
+              <b-card-text class="card-text text-right text-white">
+                {{ thousandFormatter(dataGlobal.recovered.value) }}
               </b-card-text>
             </b-col>
           </b-row>
@@ -102,15 +102,15 @@
           <b-card-text class="card-text-header">Meninggal</b-card-text>
           <b-row>
             <b-col col lg="8">
-              <b-card-text class="card-text">Global</b-card-text>
               <b-card-text>Indonesia</b-card-text>
+              <b-card-text class="card-text">Global</b-card-text>
             </b-col>
             <b-col col lg="4">
-              <b-card-text class="card-text text-right">
-                {{ thousandFormatter(dataGlobal.deaths.value) }}
-              </b-card-text>
               <b-card-text class="text-right">
                 {{ dataId[0].meninggal }}
+              </b-card-text>
+              <b-card-text class="card-text text-right">
+                {{ thousandFormatter(dataGlobal.deaths.value) }}
               </b-card-text>
             </b-col>
           </b-row>
@@ -144,12 +144,23 @@
         </b-card>
       </b-card-group>
     </div>
-    <h3 class="mt-5 mb-5">Diagram Kasus harian di Indonesia</h3>
-    <line-chart
-      v-if="loaded"
-      :chartData="dataKomulatif"
-      :chartLabels="dataTanggal"
-    ></line-chart>
+    <b-card-group deck class="mt-5">
+      <b-card>
+        <b-row>
+          <b-col>
+            <h4 class="daily-title pb-3 mb-3 text-left">
+              Diagram Kasus Harian COVID-19 di Indonesia
+            </h4>
+            <line-chart
+              v-if="loaded"
+              :chartData="dataKomulatif"
+              :chartLabels="dataTanggal"
+            >
+            </line-chart>
+          </b-col>
+        </b-row>
+      </b-card>
+    </b-card-group>
   </b-container>
 </template>
 
@@ -259,11 +270,15 @@ h5 {
   text-align: left;
 }
 .card {
-  box-shadow: rgba(0, 0, 0, 0.05) 0px 0px 4px 0px,
-    rgba(0, 0, 0, 0.1) 0px 4px 24px 0px;
+  box-shadow: 0 0 4px 0 rgba(0, 0, 0, 0.01), 0 4px 24px 0 rgba(0, 0, 0, 0.05);
+  border: none;
 }
 .martop {
   margin-top: 100px;
+}
+.daily-title {
+  font-size: 19px;
+  border-bottom: 1px solid #f1f1f1;
 }
 @media only screen and (max-width: 768px) {
   h1 {

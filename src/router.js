@@ -16,21 +16,21 @@ export const router = new VueRouter({
       path: '',
       component: Home,
       meta: {
-        title: 'Covid-19 Info',
+        title: 'COVID-19 Info',
       },
     },
     {
       path: '/news',
       component: News,
       meta: {
-        title: 'Covid-19 News',
+        title: 'COVID-19 News',
       },
     },
     {
       path: '/about',
       component: About,
       meta: {
-        title: 'About Covid-19',
+        title: 'About COVID-19',
       },
     },
   ],
