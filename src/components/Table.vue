@@ -4,7 +4,7 @@
       <b-card>
         <div>
           <h6 class="mb-3 info-title">
-            Data Kasus Coronavirus di Indonesia Berdasarkan Provinsi
+            Data Kasus COVID-19 di Indonesia Berdasarkan Provinsi
           </h6>
           <b-table
             :items="itemsId"
@@ -39,7 +39,7 @@
       <b-card>
         <div>
           <h6 class="mb-3 info-title">
-            Data Kasus Coronavirus Global
+            Data Kasus COVID-19 Di Seluruh Dunia
           </h6>
           <b-table
             :items="itemsGlobal"
@@ -100,11 +100,9 @@ export default {
       try {
         this.isLoading = true;
         const response = await axios.get(
-          'https://api.kawalcorona.com/indonesia/provinsi/'
+          'https://indonesia-covid-19.mathdro.id/api/provinsi'
         );
-        response.data.forEach((el) => {
-          this.itemsId.push(el.attributes);
-        });
+        this.itemsId = response.data.data;
         this.isLoading = false;
       } catch (error) {
         //
@@ -131,7 +129,7 @@ export default {
 }
 .info-title {
   line-height: 25px;
-  font-size: 20px;
+  font-size: 19px;
   border-bottom: 1px solid #f1f1f1;
   padding-bottom: 15px;
 }

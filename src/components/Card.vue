@@ -3,7 +3,7 @@
     <b-row class="justify-content-md-center">
       <b-col col lg="12">
         <h1 class="mt-3">COVID-19 INFO</h1>
-        <h5 class="mt-4">Informasi Covid-19 di Indonesia dan Global</h5>
+        <h5 class="mt-4">Informasi COVID-19 di Indonesia dan Global</h5>
       </b-col>
     </b-row>
     <div class="mt-5">
@@ -17,7 +17,7 @@
             </b-col>
             <b-col col lg="4">
               <b-card-text class="text-right">
-                {{ dataId[0].positif }}
+                {{ dataId.jumlahKasus }}
               </b-card-text>
               <b-card-text class="card-text text-right">
                 {{ thousandFormatter(dataGlobal.confirmed.value) }}
@@ -62,7 +62,7 @@
             </b-col>
             <b-col col lg="4">
               <b-card-text class="text-right text-white">
-                {{ dataId[0].sembuh }}
+                {{ dataId.sembuh }}
               </b-card-text>
               <b-card-text class="card-text text-right text-white">
                 {{ thousandFormatter(dataGlobal.recovered.value) }}
@@ -107,7 +107,7 @@
             </b-col>
             <b-col col lg="4">
               <b-card-text class="text-right">
-                {{ dataId[0].meninggal }}
+                {{ dataId.meninggal }}
               </b-card-text>
               <b-card-text class="card-text text-right">
                 {{ thousandFormatter(dataGlobal.deaths.value) }}
@@ -144,12 +144,12 @@
         </b-card>
       </b-card-group>
     </div>
-    <b-card-group deck class="mt-5">
-      <b-card>
-        <b-row>
-          <b-col>
-            <h4 class="daily-title pb-3 mb-3 text-left">
-              Diagram Kasus Harian COVID-19 di Indonesia
+    <b-row>
+      <b-col>
+        <b-card-group deck class="mt-5">
+          <b-card>
+            <h4 class="daily-title pb-3 mb-3">
+              Diagram Kasus Komulatif COVID-19 di Indonesia
             </h4>
             <line-chart
               v-if="loaded"
@@ -157,10 +157,25 @@
               :chartLabels="dataTanggal"
             >
             </line-chart>
-          </b-col>
-        </b-row>
-      </b-card>
-    </b-card-group>
+          </b-card>
+        </b-card-group>
+      </b-col>
+      <b-col>
+        <b-card-group deck class="mt-5">
+          <b-card>
+            <h4 class="daily-title pb-3 mb-3">
+              Diagram Kasus Harian COVID-19 di Indonesia
+            </h4>
+            <bar-chart
+              v-if="loaded"
+              :chartData="dataperDay"
+              :chartLabels="dataTanggal"
+            >
+            </bar-chart>
+          </b-card>
+        </b-card-group>
+      </b-col>
+    </b-row>
   </b-container>
 </template>
 
@@ -168,6 +183,7 @@
 import axios from 'axios';
 import { ContentLoader } from 'vue-content-loader';
 import LineChart from '../components/LineChart';
+import BarChart from '../components/BarChart';
 
 import { thousandFormatter, dateOnly } from '../utils/helper';
 
@@ -175,13 +191,15 @@ export default {
   name: 'Card',
   components: {
     ContentLoader,
-    LineChart
+    LineChart,
+    BarChart
   },
   data: () => ({
     dataId: [],
     isLoading: false,
     dataGlobal: {},
     dataKomulatif: [],
+    dataperDay: [],
     dataTanggal: [],
     loaded: false
   }),
@@ -196,7 +214,7 @@ export default {
       try {
         this.isLoading = true;
         const response = await axios.get(
-          'https://api.kawalcorona.com/indonesia/'
+          'https://indonesia-covid-19.mathdro.id/api'
         );
         this.dataId = response.data;
         this.isLoading = false;
@@ -213,6 +231,7 @@ export default {
         const result = response.data.data;
         result.forEach(el => {
           this.dataKomulatif.push(el.jumlahKasusKumulatif);
+          this.dataperDay.push(el.jumlahKasusBaruperHari);
           this.dataTanggal.push(dateOnly(el.tanggal));
         });
         this.loaded = true;
@@ -262,7 +281,7 @@ h5 {
   box-shadow: 0 0.15rem 1.75rem 0 rgba(58, 59, 69, 0.15) !important;
 }
 .card-text-header {
-  font-size: 20px;
+  font-size: 19px;
   margin-top: -5px;
   font-weight: 500;
 }
@@ -277,7 +296,7 @@ h5 {
   margin-top: 100px;
 }
 .daily-title {
-  font-size: 19px;
+  font-size: 17px;
   border-bottom: 1px solid #f1f1f1;
 }
 @media only screen and (max-width: 768px) {

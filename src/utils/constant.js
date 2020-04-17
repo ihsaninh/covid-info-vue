@@ -5,22 +5,22 @@ export const fieldsId = [
     sortable: true,
   },
   {
-    key: 'Provinsi',
+    key: 'provinsi',
     label: 'Provinsi',
     sortable: true,
   },
   {
-    key: 'Kasus_Posi',
+    key: 'kasusPosi',
     label: 'Positif',
     sortable: true,
   },
   {
-    key: 'Kasus_Semb',
+    key: 'kasusSemb',
     label: 'Sembuh',
     sortable: true,
   },
   {
-    key: 'Kasus_Meni',
+    key: 'kasusMeni',
     label: 'Meninggal',
     sortable: true,
   },

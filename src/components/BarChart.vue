@@ -1,8 +1,8 @@
 <script>
-import { Line } from 'vue-chartjs';
+import { Bar } from 'vue-chartjs';
 
 export default {
-  extends: Line,
+  extends: Bar,
   props: {
     chartData: {
       type: Array,
@@ -50,8 +50,7 @@ export default {
         datasets: [
           {
             label: 'Positif',
-            borderColor: '#1cc88a',
-            fill: false,
+            backgroundColor: '#1cc88a',
             data: this.chartData
           }
         ]
