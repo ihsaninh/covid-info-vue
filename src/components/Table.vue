@@ -39,7 +39,7 @@
       <b-card>
         <div>
           <h6 class="mb-3 info-title">
-            Kasus Coronavirus Global (Data by JHU)
+            Data Kasus Coronavirus Global
           </h6>
           <b-table
             :items="itemsGlobal"
