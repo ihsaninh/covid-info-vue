@@ -55,6 +55,27 @@ export const formatDate = (timestamp) => {
   return `${dayName[day]}, ${getDate} ${monthName[month]} ${getYears} ${getHours}:${getMinutes}`;
 };
 
+export const dateOnly = (timestamp) => {
+  const date = new Date(timestamp || 0);
+  const month = date.getMonth();
+  const getDate = date.getDate();
+  const monthName = [
+    'Jan',
+    'Feb',
+    'Mar',
+    'Apr',
+    'Mei',
+    'Jun',
+    'Jul',
+    'Agu',
+    'Sep',
+    'Okt',
+    'Nov',
+    'Des',
+  ];
+  return `${getDate} ${monthName[month]}`;
+};
+
 export const limitCharacter = (str, limit) => {
   return str.length >= limit ? `${str.substr(0, limit)}...` : str;
 };

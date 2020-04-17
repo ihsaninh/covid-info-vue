@@ -144,34 +144,41 @@
         </b-card>
       </b-card-group>
     </div>
+    <h3 class="mt-5 mb-5">Diagram Kasus harian di Indonesia</h3>
+    <line-chart
+      v-if="loaded"
+      :chartData="dataKomulatif"
+      :chartLabels="dataTanggal"
+    ></line-chart>
   </b-container>
 </template>
 
 <script>
 import axios from 'axios';
 import { ContentLoader } from 'vue-content-loader';
+import LineChart from '../components/LineChart';
 
-import { thousandFormatter } from '../utils/helper';
+import { thousandFormatter, dateOnly } from '../utils/helper';
 
 export default {
   name: 'Card',
   components: {
     ContentLoader,
+    LineChart
   },
-
-  data() {
-    return {
-      dataId: [],
-      isLoading: false,
-      dataGlobal: {},
-    };
-  },
-
+  data: () => ({
+    dataId: [],
+    isLoading: false,
+    dataGlobal: {},
+    dataKomulatif: [],
+    dataTanggal: [],
+    loaded: false
+  }),
   mounted() {
     this.getIdCases();
+    this.getDailyCases();
     this.getGlobalCases();
   },
-
   methods: {
     thousandFormatter,
     async getIdCases() {
@@ -183,7 +190,23 @@ export default {
         this.dataId = response.data;
         this.isLoading = false;
       } catch (err) {
-        console.log(err)
+        console.log(err);
+      }
+    },
+    async getDailyCases() {
+      this.loaded = false;
+      try {
+        const response = await axios.get(
+          'https://indonesia-covid-19.mathdro.id/api/harian'
+        );
+        const result = response.data.data;
+        result.forEach(el => {
+          this.dataKomulatif.push(el.jumlahKasusKumulatif);
+          this.dataTanggal.push(dateOnly(el.tanggal));
+        });
+        this.loaded = true;
+      } catch (err) {
+        console.log(err);
       }
     },
     async getGlobalCases() {
@@ -191,10 +214,10 @@ export default {
         const response = await axios.get('https://covid19.mathdro.id/api/');
         this.dataGlobal = response.data;
       } catch (err) {
-        console.log(err)
+        console.log(err);
       }
-    },
-  },
+    }
+  }
 };
 </script>
 
@@ -212,20 +235,20 @@ h5 {
   border: none !important;
   border-radius: 10px;
   color: white;
-  box-shadow: 0 .15rem 1.75rem 0 rgba(58,59,69,.15)!important;
+  box-shadow: 0 0.15rem 1.75rem 0 rgba(58, 59, 69, 0.15) !important;
 }
 .bg-hijau {
   background-color: #1cc88a !important;
   border: none !important;
   border-radius: 10px;
-  box-shadow: 0 .15rem 1.75rem 0 rgba(58,59,69,.15)!important;
+  box-shadow: 0 0.15rem 1.75rem 0 rgba(58, 59, 69, 0.15) !important;
 }
 .bg-oren {
-  background-color: #FF6384 !important;
+  background-color: #ff6384 !important;
   border: none !important;
   color: white;
   border-radius: 10px;
-  box-shadow: 0 .15rem 1.75rem 0 rgba(58,59,69,.15)!important;
+  box-shadow: 0 0.15rem 1.75rem 0 rgba(58, 59, 69, 0.15) !important;
 }
 .card-text-header {
   font-size: 20px;
