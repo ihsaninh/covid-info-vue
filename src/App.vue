@@ -16,7 +16,7 @@
             <b-navbar-nav>
               <b-nav-item class="mr-4" to="/" exact>Beranda</b-nav-item>
               <b-nav-item class="mr-4" to="/news" exact>Berita</b-nav-item>
-              <b-nav-item class="mr-1" to="/about" disabled>Tentang</b-nav-item>
+              <b-nav-item class="mr-1" v-b-modal.modalku>Tentang</b-nav-item>
             </b-navbar-nav>
           </b-navbar-nav>
         </b-collapse>
@@ -35,6 +35,11 @@
         </svg>
       </button>
     </vm-back-top>
+    <b-modal id="modalku" title="Tentang Web COVID-19" hide-footer>
+    <p>
+      Aplikasi ini ditujukan hanya untuk keperluan informasi belaka dan tidak untuk komersial. Semua data yang ditampilkan merupakan hasil dari data John Hopkins University CSSE.
+    </p>
+  </b-modal>
   </div>
 </template>
 
@@ -81,7 +86,6 @@ body {
   font-weight: 400;
   font-size: 15px;
 }
-
 .btn-to-top {
   width: 60px;
   height: 60px;
@@ -94,11 +98,28 @@ body {
   outline: none !important;
   border: none;
 }
-
 .icon-to-top {
   width: 20px;
 }
-
+.modal-content {
+  border: none !important;
+  font-family: Roboto;
+  border-radius: 5px !important;
+  box-shadow: 0 0 4px 0 rgba(0, 0, 0, 0.01), 0 4px 24px 0 rgba(0, 0, 0, 0.05);
+}
+.modal-header {
+  border-bottom: 1px solid #f1f1f1 !important;
+}
+.modal-body p {
+  font-size: 15px;
+  line-height: 26px;
+}
+.modal-title {
+  font-size: 18px;
+}
+.modal-header .close {
+  display: none;
+}
 @media only screen and (min-width: 768px) {
   .navbar {
     height: 70px;

@@ -3,7 +3,6 @@ import Vue from 'vue';
 import VueRouter from 'vue-router';
 
 import Home from './views/Home';
-import About from './views/About';
 import News from './views/News';
 
 Vue.use(VueRouter);
@@ -24,13 +23,6 @@ export const router = new VueRouter({
       component: News,
       meta: {
         title: 'COVID-19 News',
-      },
-    },
-    {
-      path: '/about',
-      component: About,
-      meta: {
-        title: 'About COVID-19',
       },
     },
   ],
