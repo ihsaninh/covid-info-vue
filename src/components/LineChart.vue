@@ -1,5 +1,5 @@
 <script>
-import { Line } from 'vue-chartjs';
+import { Line } from "vue-chartjs";
 
 export default {
   extends: Line,
@@ -49,8 +49,8 @@ export default {
         labels: this.chartLabels,
         datasets: [
           {
-            label: 'Positif',
-            borderColor: '#1cc88a',
+            label: "Positif",
+            borderColor: "#1cc88a",
             fill: false,
             data: this.chartData
           }

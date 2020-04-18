@@ -25,7 +25,7 @@
     </b-navbar>
     <router-view />
     <footer class="mt-5 footer">
-      <h6 class="text-center">Copyright 2020 | Ihsan Nurul Habib</h6>
+      <h6 class="text-center">Copyright 2020 <a href="https://github.com/ihsaninh">Ihsan Nurul Habib</a> | Sumber data berasal dari API <a href="https://github.com/mathdroid/covid-19-api">Mathdroid</a></h6>
     </footer>
     <vm-back-top timing="ease">
       <button class="btn-to-top">
@@ -72,12 +72,12 @@ body {
   font-size: 22px !important;
 }
 .footer {
+  padding-top: 35px;
+  padding-bottom: 30px;
   background-color: #fff;
   border-top: 1px solid #f1f1f1;
 }
 .footer h6 {
-  padding-top: 35px;
-  padding-bottom: 30px;
   font-weight: 400;
   font-size: 15px;
 }

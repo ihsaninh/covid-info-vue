@@ -16,12 +16,10 @@
               <b-card-text class="card-text">Global</b-card-text>
             </b-col>
             <b-col col lg="4">
-              <b-card-text class="text-right">
-                {{ dataId.jumlahKasus }}
-              </b-card-text>
-              <b-card-text class="card-text text-right">
-                {{ thousandFormatter(dataGlobal.confirmed.value) }}
-              </b-card-text>
+              <b-card-text class="text-right">{{ thousandFormatter(dataId.jumlahKasus) }}</b-card-text>
+              <b-card-text
+                class="card-text text-right"
+              >{{ thousandFormatter(dataGlobal.confirmed.value) }}</b-card-text>
             </b-col>
           </b-row>
         </b-card>
@@ -61,12 +59,10 @@
               <b-card-text class="card-text text-white">Global</b-card-text>
             </b-col>
             <b-col col lg="4">
-              <b-card-text class="text-right text-white">
-                {{ dataId.sembuh }}
-              </b-card-text>
-              <b-card-text class="card-text text-right text-white">
-                {{ thousandFormatter(dataGlobal.recovered.value) }}
-              </b-card-text>
+              <b-card-text class="text-right text-white">{{ thousandFormatter(dataId.sembuh) }}</b-card-text>
+              <b-card-text
+                class="card-text text-right text-white"
+              >{{ thousandFormatter(dataGlobal.recovered.value) }}</b-card-text>
             </b-col>
           </b-row>
         </b-card>
@@ -106,12 +102,10 @@
               <b-card-text class="card-text">Global</b-card-text>
             </b-col>
             <b-col col lg="4">
-              <b-card-text class="text-right">
-                {{ dataId.meninggal }}
-              </b-card-text>
-              <b-card-text class="card-text text-right">
-                {{ thousandFormatter(dataGlobal.deaths.value) }}
-              </b-card-text>
+              <b-card-text class="text-right">{{ thousandFormatter(dataId.meninggal) }}</b-card-text>
+              <b-card-text
+                class="card-text text-right"
+              >{{ thousandFormatter(dataGlobal.deaths.value) }}</b-card-text>
             </b-col>
           </b-row>
         </b-card>
@@ -148,30 +142,16 @@
       <b-col>
         <b-card-group deck class="mt-5">
           <b-card>
-            <h4 class="daily-title pb-3 mb-3">
-              Diagram Kasus Komulatif COVID-19 di Indonesia
-            </h4>
-            <line-chart
-              v-if="loaded"
-              :chartData="dataKomulatif"
-              :chartLabels="dataTanggal"
-            >
-            </line-chart>
+            <h4 class="daily-title pb-3 mb-3">Diagram Kasus Komulatif COVID-19 di Indonesia</h4>
+            <line-chart v-if="loaded" :chartData="dataKomulatif" :chartLabels="dataTanggal"></line-chart>
           </b-card>
         </b-card-group>
       </b-col>
       <b-col>
         <b-card-group deck class="mt-5">
           <b-card>
-            <h4 class="daily-title pb-3 mb-3">
-              Diagram Kasus Harian COVID-19 di Indonesia
-            </h4>
-            <bar-chart
-              v-if="loaded"
-              :chartData="dataperDay"
-              :chartLabels="dataTanggal"
-            >
-            </bar-chart>
+            <h4 class="daily-title pb-3 mb-3">Diagram Kasus Harian COVID-19 di Indonesia</h4>
+            <bar-chart v-if="loaded" :chartData="dataperDay" :chartLabels="dataTanggal"></bar-chart>
           </b-card>
         </b-card-group>
       </b-col>
@@ -180,15 +160,16 @@
 </template>
 
 <script>
-import axios from 'axios';
-import { ContentLoader } from 'vue-content-loader';
-import LineChart from '@/components/LineChart';
-import BarChart from '@/components/BarChart';
+import axios from "axios";
+import { ContentLoader } from "vue-content-loader";
+import LineChart from "@/components/LineChart";
+import BarChart from "@/components/BarChart";
 
-import { thousandFormatter, dateOnly } from '@/utils/helper';
+import { thousandFormatter, dateOnly } from "@/utils/helper";
+import { totalDataId, totalDataGlobal, dailyCasesId } from "@/utils/endpoints";
 
 export default {
-  name: 'Card',
+  name: "Card",
   components: {
     ContentLoader,
     LineChart,
@@ -213,9 +194,7 @@ export default {
     async getIdCases() {
       try {
         this.isLoading = true;
-        const response = await axios.get(
-          'https://indonesia-covid-19.mathdro.id/api'
-        );
+        const response = await axios.get(totalDataId);
         this.dataId = response.data;
         this.isLoading = false;
       } catch (err) {
@@ -225,9 +204,7 @@ export default {
     async getDailyCases() {
       this.loaded = false;
       try {
-        const response = await axios.get(
-          'https://indonesia-covid-19.mathdro.id/api/harian'
-        );
+        const response = await axios.get(dailyCasesId);
         const result = response.data.data;
         result.forEach(el => {
           this.dataKomulatif.push(el.jumlahKasusKumulatif);
@@ -241,7 +218,7 @@ export default {
     },
     async getGlobalCases() {
       try {
-        const response = await axios.get('https://covid19.mathdro.id/api/');
+        const response = await axios.get(totalDataGlobal);
         this.dataGlobal = response.data;
       } catch (err) {
         console.log(err);

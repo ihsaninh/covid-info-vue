@@ -3,9 +3,7 @@
     <b-card-group deck>
       <b-card>
         <div>
-          <h6 class="mb-3 info-title">
-            Data Kasus COVID-19 di Indonesia Berdasarkan Provinsi
-          </h6>
+          <h6 class="mb-3 info-title">Data Kasus COVID-19 di Indonesia Berdasarkan Provinsi</h6>
           <b-table
             :items="itemsId"
             :busy="isLoading"
@@ -15,22 +13,24 @@
             sticky-header="700px"
           >
             <template v-slot:cell(index)="data">{{ data.index + 1 }}</template>
-            <template v-slot:cell(Kasus_Posi)="data">{{
+            <template v-slot:cell(Kasus_Posi)="data">
+              {{
               thousandFormatter(data.item.Kasus_Posi)
-            }}</template>
-            <template v-slot:cell(Kasus_Semb)="data">{{
+              }}
+            </template>
+            <template v-slot:cell(Kasus_Semb)="data">
+              {{
               thousandFormatter(data.item.Kasus_Semb)
-            }}</template>
-            <template v-slot:cell(Kasus_Meni)="data">{{
+              }}
+            </template>
+            <template v-slot:cell(Kasus_Meni)="data">
+              {{
               thousandFormatter(data.item.Kasus_Meni)
-            }}</template>
+              }}
+            </template>
           </b-table>
           <div class="text-center text-danger my-2" v-if="isLoading">
-            <b-spinner
-              label="Loading..."
-              class="align-middle"
-              variant="dark"
-            ></b-spinner>
+            <b-spinner label="Loading..." class="align-middle" variant="dark"></b-spinner>
           </div>
         </div>
       </b-card>
@@ -38,9 +38,7 @@
     <b-card-group deck class="mt-5">
       <b-card>
         <div>
-          <h6 class="mb-3 info-title">
-            Data Kasus COVID-19 Di Seluruh Dunia
-          </h6>
+          <h6 class="mb-3 info-title">Data Kasus COVID-19 Di Seluruh Dunia</h6>
           <b-table
             :items="itemsGlobal"
             :busy="isLoading"
@@ -50,22 +48,24 @@
             sticky-header="700px"
           >
             <template v-slot:cell(index)="data">{{ data.index + 1 }}</template>
-            <template v-slot:cell(Confirmed)="data">{{
+            <template v-slot:cell(Confirmed)="data">
+              {{
               thousandFormatter(data.item.Confirmed)
-            }}</template>
-            <template v-slot:cell(Recovered)="data">{{
+              }}
+            </template>
+            <template v-slot:cell(Recovered)="data">
+              {{
               thousandFormatter(data.item.Recovered)
-            }}</template>
-            <template v-slot:cell(Deaths)="data">{{
+              }}
+            </template>
+            <template v-slot:cell(Deaths)="data">
+              {{
               thousandFormatter(data.item.Deaths)
-            }}</template>
+              }}
+            </template>
           </b-table>
           <div class="text-center text-danger my-2" v-if="isLoading">
-            <b-spinner
-              label="Loading..."
-              class="align-middle"
-              variant="dark"
-            ></b-spinner>
+            <b-spinner label="Loading..." class="align-middle" variant="dark"></b-spinner>
           </div>
         </div>
       </b-card>
@@ -74,20 +74,21 @@
 </template>
 
 <script>
-import axios from 'axios';
+import axios from "axios";
 
-import { fieldsId, fieldsGlobal } from '@/utils/constant';
-import { thousandFormatter } from '@/utils/helper';
+import { fieldsId, fieldsGlobal } from "@/utils/constant";
+import { thousandFormatter } from "@/utils/helper";
+import { detailDataId, detailDataGlobal } from "@/utils/endpoints";
 
 export default {
-  name: 'Table',
+  name: "Table",
   data() {
     return {
       fieldsId,
       itemsId: [],
       itemsGlobal: [],
       fieldsGlobal,
-      isLoading: false,
+      isLoading: false
     };
   },
   mounted() {
@@ -99,9 +100,7 @@ export default {
     async getDetailDataId() {
       try {
         this.isLoading = true;
-        const response = await axios.get(
-          'https://indonesia-covid-19.mathdro.id/api/provinsi'
-        );
+        const response = await axios.get(detailDataId);
         this.itemsId = response.data.data;
         this.isLoading = false;
       } catch (error) {
@@ -110,15 +109,15 @@ export default {
     },
     async getDetailGlobal() {
       try {
-        const response = await axios.get('https://api.kawalcorona.com/');
-        response.data.forEach((el) => {
+        const response = await axios.get(detailDataGlobal);
+        response.data.forEach(el => {
           this.itemsGlobal.push(el.attributes);
         });
       } catch (error) {
         //
       }
-    },
-  },
+    }
+  }
 };
 </script>
 

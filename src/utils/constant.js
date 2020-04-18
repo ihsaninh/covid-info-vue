@@ -2,54 +2,54 @@ export const fieldsId = [
   {
     key: 'index',
     label: 'No.',
-    sortable: true,
+    sortable: true
   },
   {
     key: 'provinsi',
     label: 'Provinsi',
-    sortable: true,
+    sortable: true
   },
   {
     key: 'kasusPosi',
     label: 'Positif',
-    sortable: true,
+    sortable: true
   },
   {
     key: 'kasusSemb',
     label: 'Sembuh',
-    sortable: true,
+    sortable: true
   },
   {
     key: 'kasusMeni',
     label: 'Meninggal',
-    sortable: true,
-  },
+    sortable: true
+  }
 ];
 
 export const fieldsGlobal = [
   {
     key: 'index',
     label: 'No.',
-    sortable: true,
+    sortable: true
   },
   {
     key: 'Country_Region',
     label: 'Nama Negara',
-    sortable: true,
+    sortable: true
   },
   {
     key: 'Confirmed',
     label: 'Positif',
-    sortable: true,
+    sortable: true
   },
   {
     key: 'Recovered',
     label: 'Sembuh',
-    sortable: true,
+    sortable: true
   },
   {
     key: 'Deaths',
     label: 'Meninggal',
-    sortable: true,
-  },
+    sortable: true
+  }
 ];

@@ -1,16 +1,16 @@
-export const thousandFormatter = (num) => {
+export const thousandFormatter = num => {
   if (num) {
     return num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
   }
   return num;
 };
 
-export const removeSource = (str) => {
+export const removeSource = str => {
   const strBaru = str.split('.');
   return strBaru[0];
 };
 
-export const formatDate = (timestamp) => {
+export const formatDate = timestamp => {
   const date = new Date(timestamp || 0);
   const day = date.getDay();
   const month = date.getMonth();
@@ -26,7 +26,7 @@ export const formatDate = (timestamp) => {
     'Rabu',
     'Kamis',
     "Jum'at",
-    'Sabtu',
+    'Sabtu'
   ];
 
   const monthName = [
@@ -41,7 +41,7 @@ export const formatDate = (timestamp) => {
     'Sep',
     'Okt',
     'Nov',
-    'Des',
+    'Des'
   ];
 
   if (getHours < 10) {
@@ -55,7 +55,7 @@ export const formatDate = (timestamp) => {
   return `${dayName[day]}, ${getDate} ${monthName[month]} ${getYears} ${getHours}:${getMinutes}`;
 };
 
-export const dateOnly = (timestamp) => {
+export const dateOnly = timestamp => {
   const date = new Date(timestamp || 0);
   const month = date.getMonth();
   const getDate = date.getDate();
@@ -71,7 +71,7 @@ export const dateOnly = (timestamp) => {
     'Sep',
     'Okt',
     'Nov',
-    'Des',
+    'Des'
   ];
   return `${getDate} ${monthName[month]}`;
 };
@@ -80,6 +80,6 @@ export const limitCharacter = (str, limit) => {
   return str.length >= limit ? `${str.substr(0, limit)}...` : str;
 };
 
-export const slug = (str) => {
+export const slug = str => {
   return str.replace(/ /g, '-');
 };

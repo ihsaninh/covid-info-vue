@@ -11,17 +11,12 @@
               <h6 class="mt-3 timestamp">{{ formatDate(news.publishedAt) }}</h6>
               <p class="mt-4 description">
                 {{
-                  `${news.source.name} - ${limitCharacter(news.content, 200)}`
+                `${news.source.name} - ${limitCharacter(news.content, 200)}`
                 }}
               </p>
             </b-col>
             <b-col sm="4" class="d-none d-sm-block">
-              <b-img
-                rounded
-                :src="news.urlToImage"
-                fluid
-                alt="Responsive image"
-              ></b-img>
+              <b-img rounded :src="news.urlToImage" fluid alt="Responsive image"></b-img>
             </b-col>
           </b-row>
         </b-card>
@@ -32,32 +27,16 @@
           <b-row class="mt-2">
             <b-col>
               <div class="mb-3" style="maxwidth: 80%;">
-                <content-loader
-                  :speed="2"
-                  :height="15"
-                  :animate="true"
-                ></content-loader>
+                <content-loader :speed="2" :height="15" :animate="true"></content-loader>
               </div>
               <div class="mb-3" style="maxwidth: 60%;">
-                <content-loader
-                  :speed="2"
-                  :height="17"
-                  :animate="true"
-                ></content-loader>
+                <content-loader :speed="2" :height="17" :animate="true"></content-loader>
               </div>
               <div class="mb-3">
-                <content-loader
-                  :speed="2"
-                  :height="12"
-                  :animate="true"
-                ></content-loader>
+                <content-loader :speed="2" :height="12" :animate="true"></content-loader>
               </div>
               <div class="mb-3" style="maxwidth: 90%;">
-                <content-loader
-                  :speed="10"
-                  :height="13"
-                  :animate="true"
-                ></content-loader>
+                <content-loader :speed="10" :height="13" :animate="true"></content-loader>
               </div>
             </b-col>
           </b-row>
@@ -65,29 +44,28 @@
       </div>
     </b-container>
     <b-container>
-      <b-button block variant="outline-success" @click="loadMore" class="mt-5"
-        >Load Berita Lainnya</b-button
-      >
+      <b-button block variant="outline-success" @click="loadMore" class="mt-5">Load Berita Lainnya</b-button>
     </b-container>
   </div>
 </template>
 
 <script>
-import axios from 'axios';
-import { ContentLoader } from 'vue-content-loader';
+import axios from "axios";
+import { ContentLoader } from "vue-content-loader";
 
-import { limitCharacter, formatDate, slug } from '@/utils/helper';
+import { limitCharacter, formatDate, slug } from "@/utils/helper";
+import { newsData } from "@/utils/endpoints";
 
 export default {
   data() {
     return {
       allNews: [],
       loading: false,
-      page: 1,
+      page: 1
     };
   },
   components: {
-    ContentLoader,
+    ContentLoader
   },
   mounted() {
     this.getNews();
@@ -99,9 +77,7 @@ export default {
     async getNews() {
       try {
         this.loading = true;
-        const response = await axios.get(
-          `https://newsapi.org/v2/everything?q=corona+covid&apiKey=6566df4437f94a3bb6e92809f06f46e8&language=id&sortBy=publishedAt&pageSize=5&page=${this.page}`
-        );
+        const response = await axios.get(newsData(this.page));
         this.allNews = [...this.allNews, ...response.data.articles];
         this.loading = false;
       } catch (error) {
@@ -111,8 +87,8 @@ export default {
     loadMore() {
       this.page++;
       this.getNews();
-    },
-  },
+    }
+  }
 };
 </script>
 

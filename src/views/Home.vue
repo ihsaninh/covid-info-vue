@@ -8,17 +8,17 @@
 </template>
 
 <script>
-import Card from '@/components/Card';
-import Table from '@/components/Table';
-import News from '@/components/News';
+import Card from "@/components/Card";
+import Table from "@/components/Table";
+import News from "@/components/News";
 
 export default {
-  name: 'Home',
+  name: "Home",
   components: {
     Card,
     Table,
-    News,
-  },
+    News
+  }
 };
 </script>
 

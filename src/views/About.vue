@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="container">
     <h6>Halo News</h6>
   </div>
 </template>
@@ -8,4 +8,5 @@
 export default {};
 </script>
 
-<style></style>
+<style scoped>
+</style>

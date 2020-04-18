@@ -12,30 +12,20 @@
             <p
               class="mt-4 description"
               v-if="news.source.name !== 'Youtube.com'"
-            >
-              {{ `${news.source.name} - ${limitCharacter(news.content, 180)}` }}
-            </p>
+            >{{ `${news.source.name} - ${limitCharacter(news.content, 180)}` }}</p>
             <a
               :href="news.url"
               v-else
               class="btn btn-custom link-ku"
               target="_blank"
-              >Lihat di Youtube</a
-            >
+            >Lihat di Youtube</a>
           </b-col>
           <b-col sm="4" class="d-none d-sm-block">
-            <b-img
-              rounded
-              :src="news.urlToImage"
-              fluid
-              alt="Responsive image"
-            ></b-img>
+            <b-img rounded :src="news.urlToImage" fluid alt="Responsive image"></b-img>
           </b-col>
         </b-row>
         <b-row class="justify-content-center mt-4">
-          <router-link to="/news" class="btn btn-outline-success"
-            >Lihat Selengkapnya</router-link
-          >
+          <router-link to="/news" class="btn btn-outline-success">Lihat Selengkapnya</router-link>
         </b-row>
       </b-card>
     </b-card-group>
@@ -43,15 +33,16 @@
 </template>
 
 <script>
-import axios from 'axios';
+import axios from "axios";
 
-import { limitCharacter, formatDate, slug } from '@/utils/helper';
+import { limitCharacter, formatDate, slug } from "@/utils/helper";
+import { newsData } from "@/utils/endpoints";
 
 export default {
-  name: 'News',
+  name: "News",
   data() {
     return {
-      allNews: [],
+      allNews: []
     };
   },
   mounted() {
@@ -63,15 +54,13 @@ export default {
     slug,
     async getNews() {
       try {
-        const response = await axios.get(
-          'https://newsapi.org/v2/everything?q=corona+covid&apiKey=6566df4437f94a3bb6e92809f06f46e8&language=id&sortBy=publishedAt&pageSize=5'
-        );
+        const response = await axios.get(newsData());
         this.allNews = response.data.articles;
       } catch (error) {
         // error
       }
-    },
-  },
+    }
+  }
 };
 </script>
 
