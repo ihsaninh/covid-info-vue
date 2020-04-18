@@ -13,19 +13,19 @@
             sticky-header="700px"
           >
             <template v-slot:cell(index)="data">{{ data.index + 1 }}</template>
-            <template v-slot:cell(Kasus_Posi)="data">
+            <template v-slot:cell(kasusPosi)="data">
               {{
-              thousandFormatter(data.item.Kasus_Posi)
+              thousandFormatter(data.item.kasusPosi)
               }}
             </template>
-            <template v-slot:cell(Kasus_Semb)="data">
+            <template v-slot:cell(kasusSemb)="data">
               {{
-              thousandFormatter(data.item.Kasus_Semb)
+              thousandFormatter(data.item.kasusSemb)
               }}
             </template>
-            <template v-slot:cell(Kasus_Meni)="data">
+            <template v-slot:cell(kasusMeni)="data">
               {{
-              thousandFormatter(data.item.Kasus_Meni)
+              thousandFormatter(data.item.kasusMeni)
               }}
             </template>
           </b-table>
