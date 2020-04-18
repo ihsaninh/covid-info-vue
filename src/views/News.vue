@@ -76,7 +76,7 @@
 import axios from 'axios';
 import { ContentLoader } from 'vue-content-loader';
 
-import { limitCharacter, formatDate, slug } from '../utils/helper';
+import { limitCharacter, formatDate, slug } from '@/utils/helper';
 
 export default {
   data() {

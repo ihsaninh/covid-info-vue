@@ -76,8 +76,8 @@
 <script>
 import axios from 'axios';
 
-import { fieldsId, fieldsGlobal } from '../utils/constant';
-import { thousandFormatter } from '../utils/helper';
+import { fieldsId, fieldsGlobal } from '@/utils/constant';
+import { thousandFormatter } from '@/utils/helper';
 
 export default {
   name: 'Table',

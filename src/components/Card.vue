@@ -182,10 +182,10 @@
 <script>
 import axios from 'axios';
 import { ContentLoader } from 'vue-content-loader';
-import LineChart from '../components/LineChart';
-import BarChart from '../components/BarChart';
+import LineChart from '@/components/LineChart';
+import BarChart from '@/components/BarChart';
 
-import { thousandFormatter, dateOnly } from '../utils/helper';
+import { thousandFormatter, dateOnly } from '@/utils/helper';
 
 export default {
   name: 'Card',

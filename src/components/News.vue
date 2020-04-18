@@ -45,7 +45,7 @@
 <script>
 import axios from 'axios';
 
-import { limitCharacter, formatDate, slug } from '../utils/helper';
+import { limitCharacter, formatDate, slug } from '@/utils/helper';
 
 export default {
   name: 'News',
