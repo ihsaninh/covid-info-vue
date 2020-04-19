@@ -137,7 +137,7 @@
           </b-row>
         </b-card>
       </b-card-group>
-      <h6 class="pt-4 lastUpdate">SUpdate Terakhir: {{formatDate(dataGlobal.lastUpdate)}} WIB</h6>
+      <h6 class="pt-4 lastUpdate">Update Terakhir: {{formatDate(dataGlobal.lastUpdate)}} WIB</h6>
     </div>
     <!-- Chart Section -->
     <b-row>
