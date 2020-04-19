@@ -1,12 +1,6 @@
 <template>
   <div id="app">
-    <b-navbar
-      toggleable="lg"
-      type="light"
-      variant="faded"
-      class="navbar-white"
-      fixed="top"
-    >
+    <b-navbar toggleable="lg" type="light" variant="faded" class="navbar-white" fixed="top">
       <b-container>
         <b-navbar-brand to="/" style="navbar-brand">COVID-19</b-navbar-brand>
         <b-navbar-toggle target="nav-collapse"></b-navbar-toggle>
@@ -20,34 +14,53 @@
             </b-navbar-nav>
           </b-navbar-nav>
         </b-collapse>
-
       </b-container>
     </b-navbar>
     <router-view />
     <footer class="mt-5 footer">
-      <h6 class="text-center">Copyright 2020 <a href="https://github.com/ihsaninh">Ihsan Nurul Habib</a> | Sumber data berasal dari API <a href="https://github.com/mathdroid/covid-19-api">Mathdroid</a></h6>
+      <h6 class="text-center">
+        Copyright 2020
+        <a href="https://github.com/ihsaninh">Ihsan Nurul Habib</a> | Sumber
+        data berasal dari API
+        <a
+          href="https://github.com/mathdroid/covid-19-api"
+        >Mathdroid</a>
+      </h6>
     </footer>
     <vm-back-top timing="ease">
       <button class="btn-to-top">
-        <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="arrow-up" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" class="icon-to-top">
-          <path fill="currentColor" d="M34.9 289.5l-22.2-22.2c-9.4-9.4-9.4-24.6 0-33.9L207 39c9.4-9.4 24.6-9.4 33.9 0l194.3 194.3c9.4 9.4 9.4 24.6 0 33.9L413 289.4c-9.5 9.5-25 9.3-34.3-.4L264 168.6V456c0 13.3-10.7 24-24 24h-32c-13.3 0-24-10.7-24-24V168.6L69.2 289.1c-9.3 9.8-24.8 10-34.3.4z">
-          </path>
+        <svg
+          aria-hidden="true"
+          focusable="false"
+          data-prefix="fas"
+          data-icon="arrow-up"
+          role="img"
+          xmlns="http://www.w3.org/2000/svg"
+          viewBox="0 0 448 512"
+          class="icon-to-top"
+        >
+          <path
+            fill="currentColor"
+            d="M34.9 289.5l-22.2-22.2c-9.4-9.4-9.4-24.6 0-33.9L207 39c9.4-9.4 24.6-9.4 33.9 0l194.3 194.3c9.4 9.4 9.4 24.6 0 33.9L413 289.4c-9.5 9.5-25 9.3-34.3-.4L264 168.6V456c0 13.3-10.7 24-24 24h-32c-13.3 0-24-10.7-24-24V168.6L69.2 289.1c-9.3 9.8-24.8 10-34.3.4z"
+          />
         </svg>
       </button>
     </vm-back-top>
     <b-modal id="modalku" title="Tentang Web COVID-19" hide-footer>
-    <p>
-      Aplikasi ini ditujukan hanya untuk keperluan informasi belaka dan tidak untuk komersial. Semua data yang ditampilkan merupakan hasil dari data John Hopkins University CSSE.
-    </p>
-  </b-modal>
+      <p>
+        Aplikasi ini ditujukan hanya untuk keperluan informasi belaka dan tidak
+        untuk komersial. Semua data yang ditampilkan merupakan hasil dari data
+        John Hopkins University CSSE.
+      </p>
+    </b-modal>
   </div>
 </template>
 
 <script>
-import VmBackTop from 'vue-multiple-back-top'
+import VmBackTop from "vue-multiple-back-top";
 
 export default {
-  name: 'App',
+  name: "App",
   components: {
     VmBackTop
   }
@@ -55,7 +68,7 @@ export default {
 </script>
 <style>
 #app {
-  font-family: 'Roboto';
+  font-family: "Roboto";
 }
 th {
   font-weight: 500;
@@ -69,7 +82,7 @@ body {
 }
 .navbar-white {
   background-color: rgba(255, 255, 255, 0.7) !important;
-  box-shadow: 0 0 32px -4px rgba(0, 0, 0, 0.080);
+  box-shadow: 0 0 32px -4px rgba(0, 0, 0, 0.08);
   backdrop-filter: saturate(180%) blur(20px);
 }
 .navbar-brand {
@@ -127,6 +140,13 @@ body {
 }
 @media only screen and (max-width: 768px) {
   h6 {
+    font-size: 15px !important;
+  }
+  th {
+    font-weight: 500;
+    font-size: 13px;
+  }
+  td {
     font-size: 13px !important;
   }
 }

@@ -137,7 +137,9 @@
           </b-row>
         </b-card>
       </b-card-group>
+      <h6 class="pt-4 lastUpdate">SUpdate Terakhir: {{formatDate(dataGlobal.lastUpdate)}} WIB</h6>
     </div>
+    <!-- Chart Section -->
     <b-row>
       <b-col>
         <b-card-group deck class="mt-5">
@@ -165,7 +167,7 @@ import { ContentLoader } from "vue-content-loader";
 import LineChart from "@/components/LineChart";
 import BarChart from "@/components/BarChart";
 
-import { thousandFormatter, dateOnly } from "@/utils/helper";
+import { thousandFormatter, dateOnly, formatDate } from "@/utils/helper";
 import { totalDataId, totalDataGlobal, dailyCasesId } from "@/utils/endpoints";
 
 export default {
@@ -173,7 +175,7 @@ export default {
   components: {
     ContentLoader,
     LineChart,
-    BarChart
+    BarChart,
   },
   data: () => ({
     dataId: [],
@@ -190,6 +192,7 @@ export default {
     this.getGlobalCases();
   },
   methods: {
+    formatDate,
     thousandFormatter,
     async getIdCases() {
       try {
@@ -276,6 +279,10 @@ h5 {
   font-size: 17px;
   border-bottom: 1px solid #f1f1f1;
 }
+.lastUpdate {
+  font-weight: 300;
+  font-size: 14px;
+}
 @media only screen and (max-width: 768px) {
   h1 {
     font-size: 28px;
@@ -285,6 +292,9 @@ h5 {
   }
   .card-text {
     font-size: 15px;
+  }
+  .lastUpdate {
+    display: none;
   }
 }
 </style>
