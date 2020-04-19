@@ -18,7 +18,7 @@
     </b-navbar>
     <router-view />
     <footer class="mt-5 footer">
-      <h6 class="text-center">
+      <h6 class="text-center footer-text">
         Copyright 2020
         <a href="https://github.com/ihsaninh">Ihsan Nurul Habib</a> | Sumber
         data berasal dari API
@@ -132,6 +132,9 @@ body {
 }
 .modal-header .close {
   display: none;
+}
+.footer-text{
+  font-weight: 300 !important;
 }
 @media only screen and (min-width: 768px) {
   .navbar {
