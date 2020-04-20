@@ -90,6 +90,7 @@ export default {
 }
 .description {
   line-height: 30px;
+  color: #5c6c7a;
 }
 .link-ku {
   margin-top: 30px;

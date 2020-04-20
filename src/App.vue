@@ -1,8 +1,22 @@
 <template>
   <div id="app">
-    <b-navbar toggleable="lg" type="light" variant="faded" class="navbar-white" fixed="top">
+    <b-navbar
+      toggleable="lg"
+      type="light"
+      variant="faded"
+      class="navbar-white"
+      fixed="top"
+    >
       <b-container>
-        <b-navbar-brand to="/" style="navbar-brand">COVID-19</b-navbar-brand>
+        <b-navbar-brand to="/" style="navbar-brand">
+          <img
+            src="./assets/virus.png"
+            class="d-inline-block align-top mr-1"
+            alt="Covid"
+            height="30"
+            width="30"
+          />COVID-19
+        </b-navbar-brand>
         <b-navbar-toggle target="nav-collapse"></b-navbar-toggle>
 
         <b-collapse id="nav-collapse" is-nav>
@@ -20,11 +34,9 @@
     <footer class="mt-5 footer">
       <h6 class="text-center footer-text">
         Copyright 2020
-        <a href="https://github.com/ihsaninh">Ihsan Nurul Habib</a> | Sumber
+        <a href="https://github.com/ihsaninh" class="text-link">Ihsan Nurul Habib</a> | Sumber
         data berasal dari API
-        <a
-          href="https://github.com/mathdroid/covid-19-api"
-        >Mathdroid</a>
+        <a href="https://github.com/mathdroid/covid-19-api" class="text-link">Mathdroid</a>
       </h6>
     </footer>
     <vm-back-top timing="ease">
@@ -57,18 +69,18 @@
 </template>
 
 <script>
-import VmBackTop from "vue-multiple-back-top";
+import VmBackTop from 'vue-multiple-back-top';
 
 export default {
-  name: "App",
+  name: 'App',
   components: {
-    VmBackTop
-  }
+    VmBackTop,
+  },
 };
 </script>
 <style>
 #app {
-  font-family: "Roboto";
+  font-family: 'Roboto';
 }
 th {
   font-weight: 500;
@@ -79,11 +91,21 @@ td {
 }
 body {
   background-color: #fefefe !important;
+  color: #485460;
 }
 .navbar-white {
   background-color: rgba(255, 255, 255, 0.7) !important;
   box-shadow: 0 0 32px -4px rgba(0, 0, 0, 0.08);
   backdrop-filter: saturate(180%) blur(20px);
+}
+.navbar-light .navbar-brand {
+  color: inherit;
+  background: linear-gradient(to right, #30CFD0 0%, #218c74 100%);
+	background-clip: text;
+	-webkit-text-fill-color: transparent;
+}
+.navbar-light .navbar-nav .nav-link.active {
+  color: inherit;
 }
 .navbar-brand {
   font-weight: 500 !important;
@@ -133,8 +155,17 @@ body {
 .modal-header .close {
   display: none;
 }
-.footer-text{
+.footer-text {
   font-weight: 300 !important;
+}
+.text-link {
+  color: #5aaa4e
+}
+.text-link:hover {
+  color: #4d9143;
+}
+.table {
+  color: inherit !important;
 }
 @media only screen and (min-width: 768px) {
   .navbar {
