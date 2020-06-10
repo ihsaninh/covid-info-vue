@@ -3,6 +3,7 @@
     <b-card-group deck>
       <b-card>
         <h3 class="news-title">Berita Terkini</h3>
+        <div v-if="!loading">
         <b-row class="mt-5" v-for="news in allNews" v-bind:key="news.id">
           <b-col sm="8">
             <h5 class="title">
@@ -24,6 +25,26 @@
             <b-img rounded :src="news.urlToImage" fluid alt="Responsive image"></b-img>
           </b-col>
         </b-row>
+        </div>
+
+        <div v-else v-for="index in 5" :key="index">
+          <b-row class="mt-2">
+            <b-col>
+              <div class="mb-3" style="maxwidth: 80%;">
+                <content-loader :speed="2" :height="15" :animate="true"></content-loader>
+              </div>
+              <div class="mb-3" style="maxwidth: 60%;">
+                <content-loader :speed="2" :height="17" :animate="true"></content-loader>
+              </div>
+              <div class="mb-3">
+                <content-loader :speed="2" :height="12" :animate="true"></content-loader>
+              </div>
+              <div class="mb-3" style="maxwidth: 90%;">
+                <content-loader :speed="10" :height="13" :animate="true"></content-loader>
+              </div>
+            </b-col>
+          </b-row>
+        </div>
         <b-row class="justify-content-center mt-4">
           <router-link to="/news" class="btn btn-outline-success">Lihat Selengkapnya</router-link>
         </b-row>
@@ -42,7 +63,8 @@ export default {
   name: "News",
   data() {
     return {
-      allNews: []
+      allNews: [],
+      loading: false
     };
   },
   mounted() {
@@ -54,8 +76,11 @@ export default {
     slug,
     async getNews() {
       try {
+        this.loading = true;
         const response = await axios.get(newsData());
         this.allNews = response.data.articles;
+        
+        this.loading = false;
       } catch (error) {
         // error
       }

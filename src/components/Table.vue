@@ -6,7 +6,7 @@
           <h6 class="mb-3 info-title">Data Kasus COVID-19 di Indonesia Berdasarkan Provinsi</h6>
           <b-table
             :items="itemsId"
-            :busy="isLoading"
+            :busy="itemsIdLoading"
             :fields="fieldsId"
             striped
             head-variant="dark"
@@ -29,7 +29,7 @@
               }}
             </template>
           </b-table>
-          <div class="text-center text-danger my-2" v-if="isLoading">
+          <div class="text-center text-danger my-2" v-if="itemsIdLoading">
             <b-spinner label="Loading..." class="align-middle" variant="dark"></b-spinner>
           </div>
         </div>
@@ -41,7 +41,7 @@
           <h6 class="mb-3 info-title">Data Kasus COVID-19 Di Seluruh Dunia</h6>
           <b-table
             :items="itemsGlobal"
-            :busy="isLoading"
+            :busy="itemsGlobalLoading"
             :fields="fieldsGlobal"
             striped
             head-variant="dark"
@@ -64,7 +64,7 @@
               }}
             </template>
           </b-table>
-          <div class="text-center text-danger my-2" v-if="isLoading">
+          <div class="text-center text-danger my-2" v-if="itemsGlobalLoading">
             <b-spinner label="Loading..." class="align-middle" variant="dark"></b-spinner>
           </div>
         </div>
@@ -88,7 +88,8 @@ export default {
       itemsId: [],
       itemsGlobal: [],
       fieldsGlobal,
-      isLoading: false
+      itemsIdLoading: false,
+      itemsGlobalLoading: false,
     };
   },
   mounted() {
@@ -109,10 +110,12 @@ export default {
     },
     async getDetailGlobal() {
       try {
+        this.itemsGlobalLoading = true;
         const response = await axios.get(detailDataGlobal);
         response.data.forEach(el => {
           this.itemsGlobal.push(el.attributes);
         });
+        this.itemsGlobalLoading = false;
       } catch (error) {
         //
       }

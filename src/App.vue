@@ -1,12 +1,6 @@
 <template>
   <div id="app">
-    <b-navbar
-      toggleable="lg"
-      type="light"
-      variant="faded"
-      class="navbar-white"
-      fixed="top"
-    >
+    <b-navbar toggleable="lg" type="light" variant="faded" class="navbar-white" fixed="top">
       <b-container>
         <b-navbar-brand to="/" style="navbar-brand">
           <img
@@ -36,7 +30,10 @@
         Copyright 2020
         <a href="https://github.com/ihsaninh" class="text-link">Ihsan Nurul Habib</a> | Sumber
         data berasal dari API
-        <a href="https://github.com/mathdroid/covid-19-api" class="text-link">Mathdroid</a>
+        <a
+          href="https://github.com/mathdroid/covid-19-api"
+          class="text-link"
+        >Mathdroid</a>
       </h6>
     </footer>
     <vm-back-top timing="ease">
@@ -69,18 +66,18 @@
 </template>
 
 <script>
-import VmBackTop from 'vue-multiple-back-top';
+import VmBackTop from "vue-multiple-back-top";
 
 export default {
-  name: 'App',
+  name: "App",
   components: {
-    VmBackTop,
-  },
+    VmBackTop
+  }
 };
 </script>
 <style>
 #app {
-  font-family: 'Roboto';
+  font-family: "Roboto";
 }
 th {
   font-weight: 500;
@@ -100,9 +97,9 @@ body {
 }
 .navbar-light .navbar-brand {
   color: inherit;
-  background: linear-gradient(to right, #30CFD0 0%, #218c74 100%);
-	background-clip: text;
-	-webkit-text-fill-color: transparent;
+  background: linear-gradient(to right, #30cfd0 0%, #218c74 100%);
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
 .navbar-light .navbar-nav .nav-link.active {
   color: inherit;
@@ -159,7 +156,7 @@ body {
   font-weight: 300 !important;
 }
 .text-link {
-  color: #5aaa4e
+  color: #5aaa4e;
 }
 .text-link:hover {
   color: #4d9143;
